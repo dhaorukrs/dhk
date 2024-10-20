@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Hello👋</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('darkhour.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header style="position: relative;">
+        <a href="profile.html" style="position: absolute; top: 5px; left: 20px;">
+            <img src="profile.png" alt="Profile" style="width: 36px; height: 36px; background-color: transparent;">
+        </a>
+        <h3 style="margin-left: 50px;">Hello👋</h3>
+    </header>
+    
+    <section class="centered">
+        <h3>
+            <p class="bordered-text">Your Hours: <span id="balance">0</span> hours</p>
+        </h3>
+    </section>
+    
+    <section class="centered">
+        <!-- Replaced the button with an image -->
+        <img id="claimButton" src="hours.png" alt="Claim Hours" onclick="claimHours()">
+        <p id="countdown"></p>
+    </section>
+    
+    <footer>
+        <nav>
+            <ul class="footer-nav">
+                <li><a href="index.html"><img src="home.png" alt="Home"></a></li>
+                <li><a href="Tasks.html"><img src="earn.png" alt="Tasks"></a></li>
+                <li><a href="Frens.html"><img src="frens.png" alt="Frens"></a></li>
+                <li><a href="Wallet.html"><img src="wallet.png" alt="Wallet"></a></li>
+            </ul>
+        </nav>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>
