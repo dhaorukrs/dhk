@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('darkhour.png'); /* Set the background image */
+      background-size: cover; /* Cover the entire screen */
+      background-position: center; /* Center the background image */
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      color: white; /* Change text color to white for better visibility */
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Create two equal-width columns */
+      grid-gap: 20px; /* Space between buttons */
+      max-width: 350px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 2px solid white; /* White rectangular border */
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for contrast */
+    }
+
+    .button {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border: 1px solid white; /* Border for buttons */
+      transition: background-color 0.3s;
+    }
+
+    .button img {
+      width: 80px; /* Set reduced image width */
+      height: auto; /* Maintain aspect ratio */
+      display: block;
+      margin: 0 auto; /* Center the image */
+    }
+
+    .button:hover {
+      background-color: rgba(255, 255, 255, 0.2); /* Change background color on hover */
+    }
+
+    .info-box {
+      margin: 10px auto;
+      padding: 10px;
+      max-width: 350px;
+      border: 1px solid white; /* White border */
+      border-radius: 10px; /* Blunt edges */
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      color: white; /* Text color */
+    }
+
+    .info-box p {
+      margin: 0;
+      padding: 0;
+      text-align: left    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="profile.html" class="button">
+      <img src="profile2.png" alt="Profile" />
+      Profile
+    </a>
+    <a href="index.html" class="button">
+      <img src="home2.png" alt="Home" />
+      Home
+    </a>
+    <a href="game.html" class="button">
+      <img src="game.png" alt="Game" />
+      Game 1
+    </a>
+    <a href="game2.html" class="button">
+      <img src="game.png" alt="Game" />
+      Game 2
+    </a>
+  </div>
+
+  <div class="info-box">
+    <p>GAME 1:<br>
+    GUESS A SINGLE NUMBER FOR EVERY PLACE PROVIDED TO EARN 5 HOURS</p>
+    <p>GAME 2:<br>
+    GUESS ANY 3 LUCKY BOXES TO EARN 5 HOURS</p>
+  </div>
+</body>
+</html>
