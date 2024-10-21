@@ -19,7 +19,7 @@
 
         header {
             text-align: center;
-            padding: 20px;
+            padding: 5px;
         }
 
         .centered {
@@ -30,15 +30,15 @@
         }
 
         input {
-            padding: 10px;
+            padding: 55px;
             margin: 5px;
             border: none;
             border-radius: 5px;
-            width: 80%;
+            width: 70%;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 8px 18px;
             border: none;
             border-radius: 5px;
             background-color: white; /* Button background color */
@@ -86,9 +86,9 @@
         /* Encircle the entire profile section with a white rectangular border */
         #profile-display {
             border: 3px solid white;
-            padding: 20px;
-            width: 80%;
-            margin: 20px auto;
+            padding: 15px;
+            width: 70%;
+            margin: 15px auto;
             border-radius: 10px; /* Optional: add some rounded corners */
         }
     </style>
@@ -103,7 +103,7 @@
     </header>
     
     <section class="centered">
-        <h3>Profile Information ℹ️</h3>
+        <h5>Profile Information ℹ️</h5>
         <div id="info-container">
             <div id="name-container">
                 <input type="text" id="nameInput" placeholder="Enter your name" />
@@ -144,12 +144,12 @@
     <script>
         // Function to determine user level based on balance
         function getUserLevel(balance) {
-            if (balance <= 50) return "Shadow👤";
-            if (balance <= 120) return "Phantom🏅";
-            if (balance <= 250) return "Shroud☠️";
-            if (balance <= 370) return "Nightmarer🏆";
-            if (balance <= 500) return "Zombie🎖️";
-            if (balance <= 990) return "Witch🧙‍♀️";
+            if (balance <= 70) return "Shadow👤";
+            if (balance <= 130) return "Phantom🏅";
+            if (balance <= 270) return "Shroud☠️";
+            if (balance <= 390) return "Nightmarer🏆";
+            if (balance <= 550) return "Zombie🎖️";
+            if (balance <= 1000) return "Witch🧙‍♀️";
             if (balance <= 1500) return "Whisperer🥉";
             if (balance <= 3500) return "Ghost🥈";
             if (balance <= 7000) return "Vampire🥇";
