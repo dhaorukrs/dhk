@@ -76,8 +76,8 @@
         /* Encircle each item with a white rectangular border */
         .profile-item {
             border: 2px solid white;
-            padding: 10px;
-            width: 90%;
+            padding: 77px;
+            width: 80%;
             margin: 10px 0;
             text-align: center;
             border-radius: 5px; /* Optional: add some rounded corners */
@@ -86,7 +86,7 @@
         /* Encircle the entire profile section with a white rectangular border */
         #profile-display {
             border: 3px solid white;
-            padding: 15px;
+            padding: 10px;
             width: 70%;
             margin: 15px auto;
             border-radius: 10px; /* Optional: add some rounded corners */
@@ -103,7 +103,7 @@
     </header>
     
     <section class="centered">
-        <h5>Profile Information ℹ️</h5>
+        <h4>Profile Information ℹ️</h4>
         <div id="info-container">
             <div id="name-container">
                 <input type="text" id="nameInput" placeholder="Enter your name" />
@@ -158,10 +158,10 @@
             return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
         }
 
-        // Function to break wallet address if it exceeds 15 characters
+        // Function to break wallet address if it exceeds 20 characters
         function breakWalletAddress(wallet) {
-            if (wallet.length > 15) {
-                return wallet.match(/.{1,15}/g).join('<br>'); // Break into chunks of 15 characters
+            if (wallet.length > 20) {
+                return wallet.match(/.{1,20}/g).join('<br>'); // Break into chunks of 20 characters
             }
             return wallet;
         }
