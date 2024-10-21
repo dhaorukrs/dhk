@@ -199,20 +199,21 @@
       showMessage(message);
 
       setTimeout(() => {
+        // Enable the game after timeout
         gameEnabled = true;
         localStorage.setItem('gameEnabled', 'true');
         localStorage.removeItem('gameDisabledUntil');
         document.querySelectorAll('.box').forEach(box => {
           box.classList.remove('disabled');
         });
-        hideMessage();
+
         document.getElementById('hint-button').style.display = 'none'; // Hide hint button after 30 seconds
 
-        // Show "Try again now" message for 5 seconds after the timeout
+        // Show "Try again now" message for 5 seconds
         showMessage('Try again now');
         setTimeout(() => {
           hideMessage();
-        }, 5000); // Hide message after 5 seconds
+        }, 5000);
       }, time);
     }
 
@@ -257,8 +258,7 @@
   <footer>
     <nav>
       <ul class="footer-nav">
-        <li><a href="profile2.html"><img src="profile.png"
-alt="profile"></a></li>
+        <li><a href="profile2.html"><img src="profile.png" alt="profile"></a></li>
       </ul>
     </nav>
   </footer>
