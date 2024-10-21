@@ -19,7 +19,7 @@
 
         header {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         .centered {
@@ -86,9 +86,9 @@
         /* Encircle the entire profile section with a white rectangular border */
         #profile-display {
             border: 3px solid white;
-            padding: 20px;
+            padding: 15px;
             width: 80%;
-            margin: 20px auto;
+            margin: 15px auto;
             border-radius: 10px; /* Optional: add some rounded corners */
         }
     </style>
@@ -144,24 +144,24 @@
     <script>
         // Function to determine user level based on balance
         function getUserLevel(balance) {
-            if (balance <= 50) return "Shadow👤";
-            if (balance <= 120) return "Phantom🏅";
-            if (balance <= 250) return "Shroud☠️";
-            if (balance <= 370) return "Nightmarer🏆";
-            if (balance <= 500) return "Zombie🎖️";
-            if (balance <= 990) return "Witch🧙‍♀️";
-            if (balance <= 1500) return "Whisperer🥉";
-            if (balance <= 3500) return "Ghost🥈";
-            if (balance <= 7000) return "Vampire🥇";
+            if (balance <= 80) return "Shadow👤";
+            if (balance <= 160) return "Phantom🏅";
+            if (balance <= 300) return "Shroud☠️";
+            if (balance <= 430) return "Nightmarer🏆";
+            if (balance <= 600) return "Zombie🎖️";
+            if (balance <= 1100) return "Witch🧙‍♀️";
+            if (balance <= 1700) return "Whisperer🥉";
+            if (balance <= 3900) return "Ghost🥈";
+            if (balance <= 8000) return "Vampire🥇";
             if (balance <= 12000) return "Night Legend🧝";
             if (balance <= 20000) return "Dreamer💭";
             return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
         }
 
-        // Function to break wallet address if it exceeds 15 characters
+        // Function to break wallet address if it exceeds 22 characters
         function breakWalletAddress(wallet) {
-            if (wallet.length > 15) {
-                return wallet.match(/.{1,15}/g).join('<br>'); // Break into chunks of 15 characters
+            if (wallet.length > 22) {
+                return wallet.match(/.{1,22}/g).join('<br>'); // Break into chunks of 22 characters
             }
             return wallet;
         }
