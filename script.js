@@ -62,7 +62,7 @@ function updateCountdown() {
 function claimHours() {
     const now = new Date();
     if (!lastClaim || now - lastClaim >= claimTime) {
-        balance += 5000;
+        balance += 10;
         updateBalance();
         lastClaim = new Date();
         localStorage.setItem('lastClaim', lastClaim);
