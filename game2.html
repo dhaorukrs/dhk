@@ -112,7 +112,7 @@
     let selectedSequence = [];
     let gameEnabled = localStorage.getItem('gameEnabled') !== 'false'; // Check if the game is enabled
     const disableTimeCorrect = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-    const disableTimeIncorrect = 30 * 1000; // 30 seconds in milliseconds
+    const disableTimeIncorrect = 1 * 60 * 60 * 1000; // 1 hour in milliseconds
 
     function openHint() {
       window.open('https://youtube.com/shorts/xEYG-lhAb40?si=ZNDptOWxrwALuXPC', '_blank');
@@ -210,7 +210,7 @@
         document.getElementById('hint-button').style.display = 'none'; // Hide hint button after 30 seconds
 
         // Show "Try again now" message for 5 seconds
-        showMessage('A chance!! Reload the page and Try again now');
+        showMessage('A chance!! Try again now');
         setTimeout(() => {
           hideMessage();
         }, 5000);
