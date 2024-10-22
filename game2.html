@@ -220,12 +220,19 @@
     // Function to disable the game until a specific time
     function disableGameUntil(timestamp) {
       const remainingTime = timestamp - Date.now();
+      
       if (remainingTime > 0) {
         gameEnabled = false;
         document.querySelectorAll('.box').forEach(box => {
           box.classList.add('disabled');
         });
-        showMessage('Game is Completed. Come back after 24 hours.');
+        
+        // Convert the remaining time to hours and minutes
+        const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+        const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Show message with time remaining
+        showMessage(`Game is Completed. Come back after ${hours} hours and ${minutes} minutes.`);
 
         setTimeout(() => {
           gameEnabled = true;
@@ -243,7 +250,7 @@
       messageElement.textContent = msg;
       messageElement.style.display = 'block';
 
-      // Hide the message after 5 seconds
+      // Hide the message after 5 seconds (if not showing time remaining)
       setTimeout(() => {
         messageElement.style.display = 'none';
       }, 5000);
