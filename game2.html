@@ -165,10 +165,10 @@
         const selected = selectedSequence.join('');
         if (selected === correctSequence) {
           rewardPlayer();
-          disableGameForPeriod(disableTimeCorrect, 'Congratulations! You earned 5 Hours.');
+          disableGameForPeriod(disableTimeCorrect, 'So lucky! You earned 5 Hours.');
         } else {
           failPlayer();
-          disableGameForPeriod(disableTimeIncorrect, 'Incorrect sequence! Game disabled for 30 seconds.');
+          disableGameForPeriod(disableTimeIncorrect, 'Incorrect sequence! View hint,try again in 30 seconds.');
           document.getElementById('hint-button').style.display = 'block'; // Show hint button
         }
       }
@@ -184,7 +184,7 @@
 
     // Function to handle incorrect attempts
     function failPlayer() {
-      showMessage('Incorrect sequence.');
+      showMessage('Incorrect sequence!! View Hint.');
     }
 
     // Function to disable the game for a period of time
@@ -210,7 +210,7 @@
         document.getElementById('hint-button').style.display = 'none'; // Hide hint button after 30 seconds
 
         // Show "Try again now" message for 5 seconds
-        showMessage('Try again now');
+        showMessage('A chance!! Reload the page and Try again now');
         setTimeout(() => {
           hideMessage();
         }, 5000);
@@ -225,7 +225,7 @@
         document.querySelectorAll('.box').forEach(box => {
           box.classList.add('disabled');
         });
-        showMessage('Game is disabled. Wait until it is enabled again.');
+        showMessage('Game is Completed. Come back after 24 hours.');
 
         setTimeout(() => {
           gameEnabled = true;
