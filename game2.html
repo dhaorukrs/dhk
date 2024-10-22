@@ -85,7 +85,7 @@
     }
 
     .footer-nav img {
-      width: 30px; /* Set icon size */
+      width: 52px; /* Set icon size */
       height: auto; /* Maintain aspect ratio */
     }
   </style>
@@ -232,7 +232,7 @@
         const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
 
         // Show message with time remaining
-        showMessage(`Game is Completed. Come back after ${hours} hours and ${minutes} minutes.`);
+        showMessage(`Game over. Come back after ${hours} hours and ${minutes} minutes.`);
 
         setTimeout(() => {
           gameEnabled = true;
