@@ -191,7 +191,7 @@
       saveGameState(); // Save current game state before checking answers
 
       if (isGameDisabled) {
-        showMessage('Game is disabled. Please wait.');
+        showMessage('Game is completed. Come back after 24 hours.');
         return;
       }
 
@@ -228,7 +228,7 @@
           startButton.style.display = 'none'; // Hide the start button
         }, 86400000); // Disable for 24 hours
       } else {
-        showMessage('Incorrect! Game disabled for 30 seconds.');
+        showMessage('Incorrect! Game disabled for 30 seconds, View hint.');
         isGameDisabled = true;
         startButton.style.display = 'block'; // Show the start button
         startButton.onclick = function() {
