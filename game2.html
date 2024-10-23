@@ -108,7 +108,7 @@
   <button class="hint-button" id="hint-button" onclick="openHint()">Show Hint</button>
 
   <script>
-    let correctSequence = localStorage.getItem('correctSequence') || '159'; // default correct sequence
+    let correctSequence = localStorage.getItem('correctSequence') || '357'; // default correct sequence
     let selectedSequence = [];
     let gameEnabled = localStorage.getItem('gameEnabled') !== 'false'; // Check if the game is enabled
     const disableTimeCorrect = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
@@ -154,7 +154,7 @@
     // Function to handle box selection
     function selectBox(boxNumber) {
       if (!gameEnabled) {
-        showMessage('Game Over. Wait until it is enabled again.');
+        showMessage('Game Over. Wait until it is restarted.');
         return;
       }
 
