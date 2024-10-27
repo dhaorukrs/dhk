@@ -56,7 +56,7 @@ section p {
 /* Bordered Text for "Your Hours" */
 .bordered-text {
     border: 2px solid white;
-    border-radius: 5px; /* Rounds edges to make them less sharp */
+    border-radius: 8px; /* Rounds edges to make them less sharp */
     padding: 10px;
     display: inline-block;
 }
