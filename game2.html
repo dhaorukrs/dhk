@@ -17,13 +17,40 @@
       margin: 0;
     }
 
+    /* Selected Box Display Area Styles */
+    .selected-box-display {
+      display: grid;
+      grid-template-columns: repeat(3, 90px); /* Three equal parts */
+      grid-gap: 10px;
+      margin-bottom: 20px;
+      justify-items: center;
+    }
+
+    .selected-box {
+      width: 65px;
+      height: 70px;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #333;
+      border-radius: 8px;
+    }
+    
+
     .game-board {
       display: grid;
       grid-template-columns: repeat(3, 85px);
       grid-gap: 10px;
       margin-bottom: 18px;
     }
-
+    
+    .selected-box img {
+      height: 70px; /* Adjust width as needed */
+      weight: 70px; /* Adjust height as needed */
+      object-fit: contain; /* Ensures the image fits within the specified dimensions */
+    }
+    
     .box {
       width: 90px;
       height: 90px;
@@ -94,6 +121,14 @@
 </head>
 <body>
 
+  <!-- Selected Box Display Area -->
+  <div class="selected-box-display">
+    <div class="selected-box" id="selected-box1"></div>
+    <div class="selected-box" id="selected-box2"></div>
+    <div class="selected-box" id="selected-box3"></div>
+  </div>
+
+  <!-- Game Board -->
   <div class="game-board">
     <div class="box" id="box1" onclick="selectBox(1)"><img src="1.png" alt="1"></div>
     <div class="box" id="box2" onclick="selectBox(2)"><img src="2.png" alt="2"></div>
@@ -120,7 +155,6 @@
       window.open('https://youtube.com/shorts/xEYG-lhAb40?si=ZNDptOWxrwALuXPC', '_blank');
     }
 
-    // On page load, check if the correct sequence has changed or if the game should be disabled
     function checkForSequenceChange() {
       const storedCorrectSequence = localStorage.getItem('correctSequence');
       const gameDisabledUntil = localStorage.getItem('gameDisabledUntil');
@@ -138,7 +172,6 @@
       }
     }
 
-    // Function to reset the game
     function resetGame() {
       localStorage.removeItem('selectedBoxes');
       localStorage.setItem('gameEnabled', 'true');
@@ -150,19 +183,24 @@
       gameEnabled = true;
     }
 
-    // Call this function when the page loads
     checkForSequenceChange();
 
-    // Function to handle box selection
     function selectBox(boxNumber) {
       if (!gameEnabled) {
         showMessage('Game Over. Wait until it is restarted.');
         return;
       }
 
-      selectedSequence.push(boxNumber);
+      if (selectedSequence.length < 3) {
+        selectedSequence.push(boxNumber);
 
-      // Check if the sequence is complete (3 selections)
+        // Get image from selected box and add to respective part of selected box display
+        const selectedBoxImage = document.querySelector(`#box${boxNumber} img`).cloneNode(true);
+        const displayBox = document.getElementById(`selected-box${selectedSequence.length}`);
+        displayBox.innerHTML = ''; // Clear previous content
+        displayBox.appendChild(selectedBoxImage); // Add selected image to respective section
+      }
+
       if (selectedSequence.length === 3) {
         const selected = selectedSequence.join('');
         if (selected === correctSequence) {
@@ -170,26 +208,23 @@
           disableGameForPeriod(disableTimeCorrect, 'So lucky! You earned 5 Hours.');
         } else {
           failPlayer();
-          disableGameForPeriod(disableTimeIncorrect, 'Incorrect sequence! View hint,try again in 1 hour.');
-          document.getElementById('hint-button').style.display = 'block'; // Show hint button
+          disableGameForPeriod(disableTimeIncorrect, 'Incorrect sequence! View hint, try again in 1 hour.');
+          document.getElementById('hint-button').style.display = 'block';
         }
       }
     }
 
-    // Function to reward player
     function rewardPlayer() {
       const balance = parseInt(localStorage.getItem('balance')) || 0;
-      const newBalance = balance + 5; // Reward 5 hours
+      const newBalance = balance + 5;
       localStorage.setItem('balance', newBalance);
       showMessage('Congratulations! You earned 5 Hours. Your new balance is ' + newBalance + '.');
     }
 
-    // Function to handle incorrect attempts
     function failPlayer() {
       showMessage('Incorrect sequence!! View Hint.');
     }
 
-    // Function to disable the game for a period of time
     function disableGameForPeriod(time, message) {
       const disableUntil = Date.now() + time;
       localStorage.setItem('gameDisabledUntil', disableUntil);
@@ -201,7 +236,6 @@
       showMessage(message);
 
       setTimeout(() => {
-        // Enable the game after timeout
         gameEnabled = true;
         localStorage.setItem('gameEnabled', 'true');
         localStorage.removeItem('gameDisabledUntil');
@@ -209,68 +243,66 @@
           box.classList.remove('disabled');
         });
 
-        document.getElementById('hint-button').style.display = 'none'; // Hide hint button after 30 seconds
+        document.getElementById('hint-button').style.display = 'none';
 
-        // Show "Try again now" message for 5 seconds
         showMessage('A chance!! Try again now');
-        setTimeout(() => {
-          hideMessage();
-        }, 5000);
-      }, time);
-    }
+        setTimeout(() => {hideMessage();
+                  }, 5000);
+                }, time);
+              }
 
-    // Function to disable the game until a specific time
-    function disableGameUntil(timestamp) {
-      const remainingTime = timestamp - Date.now();
-      
-      if (remainingTime > 0) {
-        gameEnabled = false;
-        document.querySelectorAll('.box').forEach(box => {
-          box.classList.add('disabled');
-        });
-        
-        // Convert the remaining time to hours and minutes
-        const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-        const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+              // Function to disable the game until a specific time
+              function disableGameUntil(timestamp) {
+                const remainingTime = timestamp - Date.now();
 
-        // Show message with time remaining
-        showMessage(`Game over. Come back after ${hours} hours and ${minutes} minutes.`);
+                if (remainingTime > 0) {
+                  gameEnabled = false;
+                  document.querySelectorAll('.box').forEach(box => {
+                    box.classList.add('disabled');
+                  });
 
-        setTimeout(() => {
-          gameEnabled = true;
-          document.querySelectorAll('.box').forEach(box => {
-            box.classList.remove('disabled');
-          });
-          hideMessage();
-        }, remainingTime);
-      }
-    }
+                  // Convert the remaining time to hours and minutes
+                  const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+                  const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
 
-    // Function to display popup messages
-    function showMessage(msg) {
-      const messageElement = document.getElementById('popup-message');
-      messageElement.textContent = msg;
-      messageElement.style.display = 'block';
+                  // Show message with time remaining
+                  showMessage(`Game over. Come back after ${hours} hours and ${minutes} minutes.`);
 
-      // Hide the message after 5 seconds (if not showing time remaining)
-      setTimeout(() => {
-        messageElement.style.display = 'none';
-      }, 5000);
-    }
+                  setTimeout(() => {
+                    gameEnabled = true;
+                    document.querySelectorAll('.box').forEach(box => {
+                      box.classList.remove('disabled');
+                    });
+                    hideMessage();
+                  }, remainingTime);
+                }
+              }
 
-    // Function to hide messages
-    function hideMessage() {
-      document.getElementById('popup-message').style.display = 'none';
-    }
-  </script>
+              // Function to display popup messages
+              function showMessage(msg) {
+                const messageElement = document.getElementById('popup-message');
+                messageElement.textContent = msg;
+                messageElement.style.display = 'block';
 
-  <footer>
-    <nav>
-      <ul class="footer-nav">
-        <li><a href="profile2.html"><img src="profile.png" alt="profile"></a></li>
-      </ul>
-    </nav>
-  </footer>
+                // Hide the message after 5 seconds (if not showing time remaining)
+                setTimeout(() => {
+                  messageElement.style.display = 'none';
+                }, 5000);
+              }
 
-</body>
-</html>
+              // Function to hide messages
+              function hideMessage() {
+                document.getElementById('popup-message').style.display = 'none';
+              }
+            </script>
+
+            <footer>
+              <nav>
+                <ul class="footer-nav">
+                  <li><a href="profile2.html"><img src="profile.png" alt="profile"></a></li>
+                </ul>
+              </nav>
+            </footer>
+
+          </body>
+          </html>
