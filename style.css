@@ -80,14 +80,16 @@ ul li {
 }
 
 footer {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);  /* Black background with 80% opacity */
     width: 100%;
     padding: 10px 0;
     text-align: center;
     position: fixed;
-    bottom: 5px; /* 5px above the bottom of the screen */
-    border-radius: 1px;
-    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.5);
+    bottom: 5px;                /* 5px above the bottom of the screen */
+    border: 2px solid white;    /* Adds a white border */
+    border-radius: 10px;        /* Slightly rounded corners for blunt edges */
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    color: #ffffff;             /* Text color inside the footer */
 }
 
 /* Navigation Styles */
