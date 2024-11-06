@@ -74,17 +74,19 @@
             margin-bottom: 20px;
         }
         footer {
-    background-color: rgba(0, 0, 0, 0.4);  /* Black background with 80% opacity */
+    background-color: rgba(0, 0, 0, 0.5);  /* Black background with 80% opacity */
+    width: 90%;
     padding: 10px 0;
     text-align: center;
-    border: 1px solid white;    /* Adds a white border */
+    position: fixed;
+    bottom: 5px;                /* 5px above the bottom of the screen */
+    border: 2px solid white;    /* Adds a white border */
     border-radius: 30px;        /* Slightly rounded corners for blunt edges */
     box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
     color: #ffffff;             /* Text color inside the footer */
 }
-        }
         /* Footer Navigation Image Styles */
-.footer-nav {
+        .footer-nav {
     list-style-type: none;
     display: flex;
     justify-content: space-around; /* Space the images evenly */
@@ -92,11 +94,11 @@
     margin:  0;
 }
 
-.footer-nav li {
+        .footer-nav li {
     display: inline;
 }
 
-.footer-nav img {
+        .footer-nav img {
     width: 52px; /* Adjust the size of the images */
     height: 52px; /* Adjust the size of the images */
 }
