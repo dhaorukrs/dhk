@@ -50,8 +50,6 @@
             background-color: #ccc; /* Button hover effect */
         }
 
-        
-
         .footer-nav {
             display: flex;
             justify-content: space-around;
@@ -72,17 +70,19 @@
             margin: 10px 0;
             text-align: center;
             border-radius: 10px; /* Optional: add some rounded corners */
-        }footer {
-    background-color: rgba(0, 0, 0, 0.5);  /* Black background with 80% opacity */
-    width: 90%;
-    padding: 10px 0;
-    text-align: center;
-    position: fixed;
-    bottom: 5px;                /* 5px above the bottom of the screen */
-    border: 2px solid white;    /* Adds a white border */
-    border-radius: 30px;        /* Slightly rounded corners for blunt edges */
-    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    color: #ffffff;             /* Text color inside the footer */
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);  /* Black background with 80% opacity */
+            width: 90%;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 5px;                /* 5px above the bottom of the screen */
+            border: 2px solid white;    /* Adds a white border */
+            border-radius: 30px;        /* Slightly rounded corners for blunt edges */
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            color: #ffffff;             /* Text color inside the footer */
         }
 
         /* Encircle the entire profile section with a white rectangular border */
@@ -103,7 +103,7 @@
         </a>
         <h3>Profile Information</h3>
     </header>
-    
+
     <section class="centered">
         <h3>Profile Information ℹ️</h3>
         <div id="info-container">
@@ -129,8 +129,13 @@
                 <p>Level: <span id="level">Shadow</span></p> <!-- Added level display -->
             </div>
         </div>
+
+        <!-- View Whitepaper link -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="pp.html" style="color: white; font-size: 18px; text-decoration: none;">View Whitepaper</a>
+        </div>
     </section>
-    
+
     <footer>
         <nav>
             <ul class="footer-nav">
@@ -141,7 +146,7 @@
             </ul>
         </nav>
     </footer>
-    
+
     <script src="script.js"></script>
     <script>
         // Function to determine user level based on balance
