@@ -19,7 +19,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 88vh;
             font-family: Arial, sans-serif;
         }
 
@@ -55,18 +55,54 @@
             position: relative;
         }
 
+                 .footer-nav {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-nav li img {
+            width: 52px;
+            height: 52px;
+        }
+
+        /* Encircle each item with a white rectangular border */
+        .profile-item {
+            border: 2px solid white;
+            padding: 7px;
+            width: 90%;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 10px; /* Optional: add some rounded corners */
+        }
+        
+                footer {
+            background-color: rgba(0, 0, 0, 0.5);  /* Black background with 80% opacity */
+            width: 90%;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 5px;                /* 5px above the bottom of the screen */
+            border: 2px solid white;    /* Adds a white border */
+            border-radius: 30px;        /* Slightly rounded corners for blunt edges */
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            color: #ffffff;             /* Text color inside the footer */
+                    }
+        
+
     </style>
 </head>
 <body>
     <!-- Scroll Button -->
     <button class="scroll-button" id="scrollButton">Scroll Automatically</button>
-    
+
     <!-- White Paper Content Container -->
     <div class="container" id="whitePaperContent">
         <h2>Dark Hours Whitepaper</h2>
         <h3>Abstract:</h3>
         <p>Dark Hours is a mining platform designed to revolutionize the mining industry by providing a secure, decentralized, and accessible solution. This whitepaper outlines the vision, problem statement, solutions, technology, tokenomics, and roadmap for Dark Hours, aiming to empower individuals globally to mine cryptocurrencies efficiently and securely.</p>
-        
+
         <h3>Project Vision and Mission:</h3>
         <h4>Mission Statement:</h4>
         <p>Dark Hours endeavors to transform the mining industry by providing a secure, decentralized, and accessible platform for global users.</p>
@@ -166,6 +202,17 @@
         <h3>Conclusion:</h3>
         <p>Dark Hours is designed to democratize access to cryptocurrency mining, reducing barriers and enhancing transparency. By fostering a decentralized and user-centric platform, we aim to build a sustainable, profitable mining community that benefits everyone involved. Join us on our journey to redefine mining for the next generation.</p>
     </div>
+
+    <footer>
+        <nav>
+            <ul class="footer-nav">
+                <li><a href="index.html"><img src="home.png" alt="Home"></a></li>
+                <li><a href="Tasks.html"><img src="earn.png" alt="Tasks"></a></li>
+                <li><a href="Frens.html"><img src="frens.png" alt="Frens"></a></li>
+                <li><a href="Wallet.html"><img src="wallet.png" alt="Wallet"></a></li>
+            </ul>
+        </nav>
+</footer>
 
     <!-- JavaScript for Auto Scrolling -->
     <script>
