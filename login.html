@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Dark Hours</title>
+    <title>Sign Up - Dark Hours</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -40,6 +40,20 @@
             color: green;
             text-align: left; /* Align text to the left */
         }
+        .centered {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .backup-link {
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            display: block;
+        }
+        .backup-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -49,7 +63,8 @@
     <section class="centered">
         <p>Please enter your Telegram username:</p>
         <input type="text" id="username" placeholder="Enter your username">
-        <button onclick="login()">Login</button>
+        <button onclick="login()">Sign Up</button>
+        <span class="backup-link" onclick="openBackupPage()">I have a backup.</span>
     </section>
 
     <div class="warning">
@@ -57,7 +72,7 @@
         <p>1. Use your Telegram username only.</p>
         <p>2. Start it with @ (Example: @abc123)</p>
         <p>3. Don't lose your Telegram App or Phone</p>
-        <p>4. Your asset security rest on your shoulders</p>
+        <p>4. Your asset security rests on your shoulders</p>
     </div>
 
     <script>
@@ -80,6 +95,10 @@
             setTimeout(() => {
                 document.body.removeChild(messageElement);
             }, 3000); // Remove the message after 3 seconds
+        }
+
+        function openBackupPage() {
+            window.location.href = 'bk2.html'; // Navigate to bk2.html page
         }
     </script>
 </body>
