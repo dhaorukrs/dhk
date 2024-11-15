@@ -103,7 +103,7 @@
     <script>
         function login() {
             const username = document.getElementById('username').value;
-            const wallet = document.getElementById('walletAddress').value;
+            const wallet = document.getElementById('wallet').value;
             
             // Correct username and wallet address
             const correctUsername = "muhammadshuayb";
@@ -112,7 +112,7 @@
             if (username === correctUsername && wallet === correctWallet) {
                 // Save to localStorage if correct
                 localStorage.setItem('username', username);
-                localStorage.setItem('walletAddress', walletAdress);
+                localStorage.setItem('wallet', wallet);
                 localStorage.setItem('balance', 777); // Set balance to 777 hours
 
                 showMessage("Login successful, welcome " + username);
