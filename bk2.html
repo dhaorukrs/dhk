@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup - Dark Hours</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('darkhour.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+        .content {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+        }
+        .backup-info {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 600px;
+            display: inline-block;
+            border: 2px solid white; /* Rectangular border with blunt edges */
+            text-align: left; /* Align text to the left */
+        }
+        .backup-info p {
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1rem;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #fff;
+            color: #000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px; /* Blunt edges for button */
+            border: none;
+            width: 200px; /* Set a fixed width */
+        }
+        button:hover {
+            background-color: #ddd;
+        }
+        .back-button {
+            margin-top: 10px;
+        }
+        .message {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: 1px solid red; /* Red border for error message */
+            z-index: 1000;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Backup - Dark Hours</h1>
+    </header>
+
+    <div class="backup-info">
+        <h3>Important Backup Information</h3>
+        <p>1. This page is for users who have a backup.</p>
+        <p>2. Please make sure you have your backup information ready.</p>
+        <p>3. Contact support if you face any issues.</p>
+        <p>4. Make sure to store your backup safely and securely.</p>
+    </div>
+    
+    <!-- User Input Form -->
+    <div class="content">
+        <input type="text" id="username" placeholder="Enter your username" />
+        <input type="text" id="wallet" placeholder="Enter your wallet address" />
+        
+        <button onclick="login()">Login</button>
+        
+        <button class="back-button" onclick="goBack()">Back to Sign Up</button>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const wallet = document.getElementById('walletAddress').value;
+            
+            // Correct username and wallet address
+            const correctUsername = "muhammadshuayb";
+            const correctWallet = "xxx";
+            
+            if (username === correctUsername && wallet === correctWallet) {
+                // Save to localStorage if correct
+                localStorage.setItem('username', username);
+                localStorage.setItem('walletAddress', walletAdress);
+                localStorage.setItem('balance', 777); // Set balance to 777 hours
+
+                showMessage("Login successful, welcome " + username);
+                // Redirect to index.html after successful login
+                window.location.href = 'index.html'; 
+            } else {
+                // Show error message if incorrect
+                showMessage("User not found, contact user support");
+            }
+        }
+
+        function showMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageElement.className = 'message';
+
+            document.body.appendChild(messageElement);
+            setTimeout(() => {
+                document.body.removeChild(messageElement);
+            }, 3000); // Remove the message after 3 seconds
+        }
+
+        function goBack() {
+            window.location.href = 'login.html'; // Navigates back to login page
+        }
+    </script>
+</body>
+</html>
