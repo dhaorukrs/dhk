@@ -92,8 +92,8 @@
     
     <!-- User Input Form -->
     <div class="content">
-        <input type="text" id="username" placeholder="Enter your username" />
-        <input type="text" id="wallet" placeholder="Enter your wallet address" />
+        <input type="text" id="username" placeholder="Enter your existing username" />
+        <input type="text" id="walletAddress" placeholder="Enter your existing wallet address" />
         
         <button onclick="login()">Login</button>
         
@@ -103,16 +103,16 @@
     <script>
         function login() {
             const username = document.getElementById('username').value;
-            const wallet = document.getElementById('wallet').value;
+            const walletAddress = document.getElementById('walletAddress').value;
             
-            // Correct username and wallet address
+            // Correct username and walletAddress
             const correctUsername = "muhammadshuayb";
-            const correctWallet = "xxx";
+            const correctWalletAddress = "xxx";
             
-            if (username === correctUsername && wallet === correctWallet) {
+            if (username === correctUsername && walletAddress === correctWalletAddress) {
                 // Save to localStorage if correct
                 localStorage.setItem('username', username);
-                localStorage.setItem('wallet', wallet);
+                localStorage.setItem('walletAddress', walletAddress);
                 localStorage.setItem('balance', 777); // Set balance to 777 hours
 
                 showMessage("Login successful, welcome " + username);
