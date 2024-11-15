@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Hours Backup</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); /* Unique font */
+
+    body {
+      font-family: 'Pacifico', cursive; /* Apply font globally */
+      background: url('darkhour.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 78vh; /* Reduced page height */
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .backup-paper {
+      width: 75%;
+      max-width: 700px;
+      border: 2px solid #000;
+      background: linear-gradient(
+        90deg,
+        #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, 
+        #e17ec6, #c289df, #9b9ef2, #73b8ff, #7ad4ff, 
+        #9ff5f3, #c5f8c4, #e8f8a2, #f8f9b5
+      );
+      color: #333;
+      padding: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .body p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .left .stamp {
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .right #datetime {
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .note {
+      font-size: 0.9rem;
+      margin: 0px 0;
+      color: #555;
+      text-align: left; /* Align text to the left */
+      padding: 5px;
+      border: 2px solid #000; /* Border for the Note section */
+      border-radius: 10px; /* Blunt edges */
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+      width: 90%;
+      max-width: 600px;
+    }
+
+    button#back-btn {
+      padding: 10px 15px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button#back-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="backup-paper">
+    <h1 class="header">DARK HOURS BACK UP</h1>
+    <div class="body">
+      <p>Username: <span id="username"></span></p>
+      <p>Balance: <span id="balance"></span></p>
+      <p>Wallet Address: <span id="walletAddress"></span></p>
+    </div>
+    <div class="footer">
+      <div class="left">
+        <p class="stamp">Dark Hours Backup</p>
+      </div>
+      <div class="right">
+        <p id="datetime"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <p>NOTE:</p>
+    <p>1. Screenshot and send to the official Gmail for backup.</p>
+    <p>2. Don't change any of the above listed as the backup won't be successful if changed.</p>
+  </div>
+
+  <button id="back-btn" onclick="goToProfile()">Back to Profile</button>
+
+  <script>
+    // Retrieve values from localStorage
+    const username = localStorage.getItem("username") || "N/A";
+    const balance = localStorage.getItem("balance") || "N/A";
+    const wallet = localStorage.getItem("walletAddress") || "N/A";
+
+    // Populate the backup paper
+    document.getElementById("username").textContent = username;
+    document.getElementById("balance").textContent = balance + " hours"; // Add " hours" after the balance
+
+    // Function to break the wallet address if it exceeds 22 characters
+    function formatWalletAddress(walletAddress) {
+      if (walletAddress.length > 22) {
+        return walletAddress.slice(0, 22) + "<br>" + walletAddress.slice(22);
+      }
+      return walletAddress;
+    }
+
+    // Format and display the wallet address
+    document.getElementById("walletAddress").innerHTML = formatWalletAddress(wallet);
+
+    // Display current time and date
+    function updateTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString();
+      const date = now.toLocaleDateString();
+      document.getElementById("datetime").textContent = `${time} | ${date}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Redirect to profile page when clicking the "Back to Profile" button
+    function goToProfile() {
+      window.location.href = "profile.html";
+    }
+  </script>
+</body>
+</html>
