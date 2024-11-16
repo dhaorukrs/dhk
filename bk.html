@@ -27,6 +27,35 @@
       background: linear-gradient(
         90deg,
         #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, 
+        #e17ec6, #c289df, #9b9ef2, #73b8ff, #7ad4ff, <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Hours Backup</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      font-family: 'Pacifico', cursive;
+      background: url('darkhour.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 78vh; /* Reduced page height */
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .backup-paper {
+      width: 75%;
+      max-width: 700px;
+      border: 2px solid #000;
+      background: linear-gradient(
+        90deg,
+        #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, 
         #e17ec6, #c289df, #9b9ef2, #73b8ff, #7ad4ff, 
         #9ff5f3, #c5f8c4, #e8f8a2, #f8f9b5
       );
@@ -34,12 +63,32 @@
       padding: 7px;
       margin-bottom: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    /* Parallel lines on the edges */
+    .backup-paper:before,
+    .backup-paper:after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background-color: #000;
+      top: 0;
+    }
+
+    .backup-paper:before {
+      left: 5px; /* Left edge */
+    }
+
+    .backup-paper:after {
+      right: 5px; /* Right edge */
     }
 
     .backup-paper .header,
     .backup-paper .body p,
-    .backup-paper .footer {
-      text-decoration: underline; /* Underline all text on the backup paper */
+    .backup-paper .footer p {
+      text-decoration: underline; /* Underline all text */
     }
 
     .header {
@@ -74,26 +123,36 @@
       font-size: 0.7rem;
       margin: 0px 0;
       color: #555;
-      text-align: left; /* Align text to the left */
+      text-align: left;
       padding: 3px;
-      border: 2px solid #000; /* Border for the Note section */
-      border-radius: 10px; /* Blunt edges */
-      background-color: rgba(200, 200, 200, 0.7); /* Semi-transparent background */
+      border: 2px solid #000;
+      border-radius: 10px;
+      background-color: rgba(200, 200, 200, 0.7);
       width: 75%;
       max-width: 600px;
     }
 
-    button#back-btn {
+    #back-btn,
+    #send-backup-btn {
       padding: 10px 15px;
       background-color: #333;
       color: #fff;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      margin: 10px 5px;
     }
 
-    button#back-btn:hover {
+    #back-btn:hover,
+    #send-backup-btn:hover {
       background-color: #555;
+    }
+
+    #send-backup-btn {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   </style>
 </head>
@@ -113,12 +172,13 @@
         <p id="datetime"></p>
       </div>
     </div>
+    <button id="send-backup-btn" onclick="sendBackup()">Send Backup</button>
   </div>
 
   <div class="note">
     <p>NOTE:</p>
-    <p>1. Screenshot and send to the official Gmail for backup.</p>
-    <p>2. Don't change any of the above-listed as backup won't be approved if changed.</p>
+    <p>1. Screenshot and send to @HOURS_BKP_BOT for backup.</p>
+    <p>2. Don't change any of the above-listed as backup bot won't  approve it if changed.</p>
   </div>
 
   <button id="back-btn" onclick="goToProfile()">Back to Profile</button>
@@ -158,6 +218,12 @@
     function goToProfile() {
       window.location.href = "profile.html";
     }
+
+    // Redirect to the Telegram bot when clicking "Send Backup"
+    function sendBackup() {
+      window.open("https://t.me/HOURS_BKP_BOT?start=r03383973495", "_blank");
+    }
   </script>
 </body>
+</html></body>
 </html>
