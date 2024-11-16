@@ -31,21 +31,27 @@
         #9ff5f3, #c5f8c4, #e8f8a2, #f8f9b5
       );
       color: #333;
-      padding: 10px;
+      padding: 7px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .backup-paper .header,
+    .backup-paper .body p,
+    .backup-paper .footer {
+      text-decoration: underline; /* Underline all text on the backup paper */
     }
 
     .header {
       text-align: center;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       margin-bottom: 20px;
       text-transform: uppercase;
     }
 
     .body p {
       margin: 10px 0;
-      font-size: 1.1rem;
+      font-size: 1.0rem;
     }
 
     .footer {
@@ -54,9 +60,9 @@
       margin-top: 20px;
     }
 
-    .left .stamp {
-      font-style: italic;
-      font-weight: bold;
+    .left img {
+      width: 80px; /* Adjust the size of the image */
+      height: auto;
     }
 
     .right #datetime {
@@ -65,15 +71,15 @@
     }
 
     .note {
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       margin: 0px 0;
       color: #555;
       text-align: left; /* Align text to the left */
-      padding: 5px;
+      padding: 3px;
       border: 2px solid #000; /* Border for the Note section */
       border-radius: 10px; /* Blunt edges */
-      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-      width: 90%;
+      background-color: rgba(200, 200, 200, 0.7); /* Semi-transparent background */
+      width: 75%;
       max-width: 600px;
     }
 
@@ -82,7 +88,7 @@
       background-color: #333;
       color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
     }
 
@@ -101,7 +107,7 @@
     </div>
     <div class="footer">
       <div class="left">
-        <p class="stamp">Dark Hours Backup</p>
+        <img src="st.png" alt="Stamp">
       </div>
       <div class="right">
         <p id="datetime"></p>
@@ -112,7 +118,7 @@
   <div class="note">
     <p>NOTE:</p>
     <p>1. Screenshot and send to the official Gmail for backup.</p>
-    <p>2. Don't change any of the above listed as the backup won't be successful if changed.</p>
+    <p>2. Don't change any of the above-listed as backup won't be approved if changed.</p>
   </div>
 
   <button id="back-btn" onclick="goToProfile()">Back to Profile</button>
