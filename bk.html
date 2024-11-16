@@ -49,11 +49,11 @@
     }
 
     .backup-paper:before {
-      left: 5px; /* Left edge */
+      left: 3px; /* Left edge */
     }
 
     .backup-paper:after {
-      right: 5px; /* Right edge */
+      right: 3px; /* Right edge */
     }
 
     .backup-paper .header,
@@ -86,7 +86,7 @@
     }
 
     .right #datetime {
-      font-size: 0.9rem;
+      font-size: 1.0rem;
       text-align: right;
     }
 
@@ -95,7 +95,7 @@
       margin: 0px 0;
       color: #555;
       text-align: left;
-      padding: 3px;
+      padding: 2px;
       border: 2px solid #000;
       border-radius: 10px;
       background-color: rgba(200, 200, 200, 0.7);
@@ -103,13 +103,22 @@
       max-width: 600px;
     }
 
-    #back-btn,
-    #send-backup-btn {
+    #back-btn{
       padding: 10px 15px;
       background-color: #333;
       color: #fff;
       border: none;
       border-radius: 10px;
+      cursor: pointer;
+      margin: 10px 5px;
+    }
+    
+    #send-backup-btn {
+      padding: 7px 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 15px;
       cursor: pointer;
       margin: 10px 5px;
     }
@@ -121,7 +130,7 @@
 
     #send-backup-btn {
       position: absolute;
-      bottom: 5px;
+      bottom: 1px;
       left: 50%;
       transform: translateX(-50%);
     }
