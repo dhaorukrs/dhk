@@ -105,7 +105,16 @@
     </header>
 
     <section class="centered">
-        <h3>Profile Information ℹ️</h3>  
+        <h3>Profile Information ℹ️</h3>
+        <div id="info-container">
+            <div id="name-container">
+                <input type="text" id="nameInput" placeholder="Enter your name" />
+            </div>
+            <div id="wallet-container">
+                <input type="text" id="walletInput" placeholder="Enter your wallet address" />
+            </div>
+            <button onclick="saveProfile()">Save</button>
+        </div>
         <div id="profile-display" style="display:none;">
             <div class="profile-item">
                 <p>Name: <span id="display-name"></span></p>
@@ -135,8 +144,8 @@
             <ul class="footer-nav">
                 <li><a href="index.html"><img src="home.png" alt="Home"></a></li>
                 <li><a href="Tasks.html"><img src="earn.png" alt="Tasks"></a></li>
-                <li><a href="profile2.html"><img src="profile2.png" alt="profile2"></a></li>
-                <li><a href="Wallet.html"><img src="wallet.png" alt="Wallet"></a></li>
+                <li><a href="Frens.html"><img src="frens.png" alt="Frens"></a></li>
+                <li><a href="profile2.html"><img src="profile2.png" alt="Wallet"></a></li>
             </ul>
         </nav>
     </footer>
@@ -177,7 +186,6 @@
             localStorage.setItem("username", name);
             localStorage.setItem("walletAddress", wallet);
             localStorage.setItem("balance", balance);
-            localStorage.setItem("level", level);
 
             // Update the display
             document.getElementById("display-name").innerText = name;
