@@ -168,6 +168,11 @@
             return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
         }
 
+        // Save to Local Storage
+            localStorage.setItem("level", level);
+        // Update the display
+            document.getElementById("display-level").innerText = level;
+
         // Function to break wallet address if it exceeds 24 characters
         function breakWalletAddress(wallet) {
             if (wallet.length > 24) {
