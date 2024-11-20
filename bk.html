@@ -148,7 +148,9 @@
       <p>Username: <span id="username"></span></p>
       <p>Balance: <span id="balance"></span></p>
       <p>Wallet Address: <span id="walletAddress"></span></p>
-      <p>Level: <span id="level"></span></p>
+      <div class="backup-paper">
+      <p>Level: <span id="level">Shadow</span></p> <!-- Added level display -->
+      </div>
     </div>
     <div class="footer">
       <div class="left">
@@ -187,11 +189,14 @@
             return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
         }
     
+    // Get and display user level based on balance
+    const level = getUserLevel(balance);
+    document.getElementById("level").innerText = level;
+    
     // Retrieve values from localStorage
     const username = localStorage.getItem("username") || "N/A";
     const balance = localStorage.getItem("balance") || "N/A";
     const wallet = localStorage.getItem("walletAddress") || "N/A";
-    const level = localStorage.getItem("level") || "...";
     
 
     // Populate the backup paper
