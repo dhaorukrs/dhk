@@ -26,12 +26,14 @@
       border: 2px solid #000;
       background: linear-gradient(
         90deg,
-        #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, 
-        #e17ec6, #c289df, #9b9ef2, #73b8ff, #7ad4ff, 
-        #9ff5f3, #c5f8c4, #e8f8a2, #f8f9b5,
-        #f4c4f3, #b8e1ff, #f6e0a6,
-        #d8a7aa, #f89bae,
-        #5ac8fa
+        #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, #5ac8fa, #f4c4f3,
+        #e17ec6, #c289df, #9b9ef2, #73b8ff, #7ad4ff, #e8f8a2, #c289df,
+        #9ff5f3, #c5f8c4, #e8f8a2, #f8f9b5, #fef5d4, #b8e1ff,
+        #f4c4f3, #b8e1ff, #f6e0a6, #e8f8a2, #ffd5aa,
+        #d8a7aa, #f89bae, #f4c4f3, #b8e1ff,
+        #5ac8fa, #f4c4f3, #5ac8fa,
+        #ffdea6, #a6f7c8, 
+        #c8a6f7
       );
       color: #333;
       padding: 7px;
@@ -168,6 +170,22 @@
   <button id="back-btn" onclick="goToProfile()">Back to Profile</button>
 
   <script>
+     // Function to determine user level based on balance
+        function getUserLevel(balance) {
+            if (balance <= 80) return "Shadow👤";
+            if (balance <= 160) return "Phantom🏅";
+            if (balance <= 300) return "Shroud☠️";
+            if (balance <= 430) return "Nightmarer🏆";
+            if (balance <= 600) return "Zombie🎖️";
+            if (balance <= 1100) return "Witch🧙‍♀️";
+            if (balance <= 1700) return "Whisperer🥉";
+            if (balance <= 3900) return "Ghost🥈";
+            if (balance <= 8000) return "Vampire🥇";
+            if (balance <= 12000) return "Night Legend🧝";
+            if (balance <= 20000) return "Dreamer💭";
+            return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
+        }
+    
     // Retrieve values from localStorage
     const username = localStorage.getItem("username") || "N/A";
     const balance = localStorage.getItem("balance") || "N/A";
