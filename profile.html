@@ -106,18 +106,9 @@
 
     <section class="centered">
         <h3>Profile Information ℹ️</h3>
-        <div id="info-container">
-            <div id="name-container">
-                <input type="text" id="nameInput" placeholder="Enter your name" />
-            </div>
-            <div id="wallet-container">
-                <input type="text" id="walletInput" placeholder="Enter your wallet address" />
-            </div>
-            <button onclick="saveProfile()">Save</button>
-        </div>
         <div id="profile-display" style="display:none;">
             <div class="profile-item">
-                <p>Name: <span id="display-name"></span></p>
+                <p>Username: <span id="display-name"></span></p>
             </div>
             <div class="profile-item">
                 <p>Wallet Address: <span id="display-wallet"></span></p>
@@ -168,11 +159,6 @@
             return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
         }
 
-        // Save to Local Storage
-            localStorage.setItem("level", level);
-        // Update the display
-            document.getElementById("display-level").innerText = level;
-
         // Function to break wallet address if it exceeds 24 characters
         function breakWalletAddress(wallet) {
             if (wallet.length > 24) {
@@ -191,6 +177,7 @@
             localStorage.setItem("username", name);
             localStorage.setItem("walletAddress", wallet);
             localStorage.setItem("balance", balance);
+            localStorage.setItem("level", level);
 
             // Update the display
             document.getElementById("display-name").innerText = name;
