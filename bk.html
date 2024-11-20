@@ -166,38 +166,37 @@
   <div class="note">
     <p>NOTE:</p>
     <p>1. Screenshot and send to @HOURS_BKP_BOT for backup.</p>
-    <p>2. Don't share your back up Paper with friends,Your information is your default password</p>
+    <p>2. Don't share your back up Paper with friends, Your information is your default password.</p>
     <p>3. Don't change any of the above-listed as backup won't be approved by the Bot if changed.</p>
   </div>
 
   <button id="back-btn" onclick="goToProfile()">Back to Profile</button>
 
   <script>
-     // Function to determine user level based on balance
-        function getUserLevel(balance) {
-            if (balance <= 80) return "Shadow👤";
-            if (balance <= 160) return "Phantom🏅";
-            if (balance <= 300) return "Shroud☠️";
-            if (balance <= 430) return "Nightmarer🏆";
-            if (balance <= 600) return "Zombie🎖️";
-            if (balance <= 1100) return "Witch🧙‍♀️";
-            if (balance <= 1700) return "Whisperer🥉";
-            if (balance <= 3900) return "Ghost🥈";
-            if (balance <= 8000) return "Vampire🥇";
-            if (balance <= 12000) return "Night Legend🧝";
-            if (balance <= 20000) return "Dreamer💭";
-            return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
-        }
-    
-    // Get and display user level based on balance
-    const level = getUserLevel(balance);
-    document.getElementById("level").innerText = level;
-    
+    // Function to determine user level based on balance
+    function getUserLevel(balance) {
+      if (balance <= 80) return "Shadow👤";
+      if (balance <= 160) return "Phantom🏅";
+      if (balance <= 300) return "Shroud☠️";
+      if (balance <= 430) return "Nightmarer🏆";
+      if (balance <= 600) return "Zombie🎖️";
+      if (balance <= 1100) return "Witch🧙‍♀️";
+      if (balance <= 1700) return "Whisperer🥉";
+      if (balance <= 3900) return "Ghost🥈";
+      if (balance <= 8000) return "Vampire🥇";
+      if (balance <= 12000) return "Night Legend🧝";
+      if (balance <= 20000) return "Dreamer💭";
+      return "DarkHours Lord👑"; // 20010 to 1,000,000+ hours
+    }
+
     // Retrieve values from localStorage
     const username = localStorage.getItem("username") || "N/A";
-    const balance = localStorage.getItem("balance") || "N/A";
+    const balance = parseFloat(localStorage.getItem("balance")) || 0; // Convert to number
     const wallet = localStorage.getItem("walletAddress") || "N/A";
-    
+
+    // Get the user level based on the balance
+    const level = getUserLevel(balance);
+    document.getElementById("level").innerText = level;  // Display the level
 
     // Populate the backup paper
     document.getElementById("username").textContent = username;
