@@ -29,9 +29,9 @@
         #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, 
         #e17ec6, #c289df, #9b9ef2, #73b8ff, #7ad4ff, 
         #9ff5f3, #c5f8c4, #e8f8a2, #f8f9b5,
-        #fef5d4, #ffe9c4, #ffd5aa,
-        #ffb4a9, #ff91aa,
-        #7ad4ff,
+        #f4c4f3, #b8e1ff, #f6e0a6,
+        #d8a7aa, #f89bae,
+        #5ac8fa
       );
       color: #333;
       padding: 7px;
@@ -146,7 +146,7 @@
       <p>Username: <span id="username"></span></p>
       <p>Balance: <span id="balance"></span></p>
       <p>Wallet Address: <span id="walletAddress"></span></p>
-      <p>Balance: <span id="level"></span></p>
+      <p>Level: <span id="level"></span></p>
     </div>
     <div class="footer">
       <div class="left">
@@ -172,7 +172,7 @@
     const username = localStorage.getItem("username") || "N/A";
     const balance = localStorage.getItem("balance") || "N/A";
     const wallet = localStorage.getItem("walletAddress") || "N/A";
-    const wallet = localStorage.getItem("level") || "N/A";
+    const level = localStorage.getItem("level") || "...";
     
 
     // Populate the backup paper
