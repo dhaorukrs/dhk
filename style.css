@@ -123,7 +123,7 @@ button {
     padding: 10px 20px;
     font-size: 1.2rem;
     font-weight: bold;
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -143,6 +143,22 @@ button:disabled {
     height: 220px;
     cursor: pointer;
     border-radius: 50%; /* Keeps the circular shape */
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+#claimButton.flip {
+    animation: flip 2s ease-in-out;
 }
 
 /* Countdown Timer Styles */
