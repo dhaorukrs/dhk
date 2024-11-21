@@ -101,26 +101,40 @@
     </div>
 
     <script>
-        function login() {
-            const username = document.getElementById('username').value;
-            const walletAddress = document.getElementById('walletAddress').value;
-            
-            // Correct username and walletAddress
-            const correctUsername = "@muhammadshuayb";
-            const correctWalletAddress = "UQDWoCAyIm9-pe3C0lT4Z5tweqon3rLcsPjYqnfetDJ1ygJX";
-            
-            if (username === correctUsername && walletAddress === correctWalletAddress) {
-                // Save to localStorage if correct
-                localStorage.setItem('username', username);
-                localStorage.setItem('walletAddress', walletAddress);
-                localStorage.setItem('balance', 1177); // Set balance to 1177 hours
+        const users = [
+            { username: "@amk1", walletAddress: "xxx1", balance: 1001 },
+            { username: "@amk2", walletAddress: "xxx2", balance: 1002 },
+            { username: "@amk3", walletAddress: "xxx3", balance: 1003 },
+            { username: "@amk4", walletAddress: "xxx4", balance: 1004 },
+            { username: "@amk5", walletAddress: "xxx5", balance: 1005 },
+            { username: "@amk6", walletAddress: "xxx6", balance: 1006 },
+            { username: "@amk7", walletAddress: "xxx7", balance: 1007 },
+            { username: "@amk8", walletAddress: "xxx8", balance: 1008 },
+            { username: "@amk9", walletAddress: "xxx9", balance: 1009 },
+            { username: "@amk10", walletAddress: "xxx10", balance: 1010 },
+        ];
 
-                showMessage("Login successful, welcome " + username);
-                // Redirect to index.html after successful login
-                window.location.href = 'index.html'; 
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const walletAddress = document.getElementById('walletAddress').value.trim();
+
+            // Find the user in the array
+            const user = users.find(u => u.username === username && u.walletAddress === walletAddress);
+
+            if (user) {
+                // Save the user details to localStorage
+                localStorage.setItem('username', user.username);
+                localStorage.setItem('walletAddress', user.walletAddress);
+                localStorage.setItem('balance', user.balance);
+
+                // Show success message
+                showMessage(`Login successful! Welcome ${user.username}. Your balance is ${user.balance}.`);
+                
+                // Redirect to index.html
+                window.location.href = 'index.html';
             } else {
-                // Show error message if incorrect
-                showMessage("Ohh!! You forgot to get login approval,contact user support for approval.");
+                // Show error message if no match is found
+                showMessage("Invalid username or wallet address. Please check your credentials.");
             }
         }
 
