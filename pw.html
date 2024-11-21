@@ -8,7 +8,7 @@ body>
   <title>Password Page</title>
   <style>
     body {
-      background-image: url('darkhours.png');
+      background-image: url('darkhour.png');
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -77,7 +77,7 @@ body>
     .reset-container {
       display: none;
       background: rgba(0, 0, 0, 0.8);
-      padding: 20px;
+      padding: 10px;
       border-radius: 10px;
       margin-top: 20px;
     }
@@ -88,7 +88,7 @@ body>
       margin-bottom: 20px;
       text-align: center;
       font-size: 18px;
-      border-radius: 5px;
+      border-radius: 15px;
       border: 2px solid #fff;
       background: transparent;
       color: #fff;
@@ -164,7 +164,7 @@ body>
   </div>
 
   <div id="reset-container" class="reset-container">
-    <input type="text" id="wallet-address" placeholder="Enter wallet address">
+    <input type="text" id="wallet-address" placeholder="Enter your wallet address">
     <input type="password" id="new-password" placeholder="Enter a new password">
     <button class="reset-button" onclick="resetPassword()">Reset Password</button>
     <button class="back-button" onclick="showInitialContainer()">Back</button>
@@ -197,7 +197,7 @@ body>
         displayMessage('success', "Password correct! Redirecting...");
         window.location.href = "bk.html";
       } else {
-        displayMessage('error', "Incorrect password. If you forgot your password, please tap on Forgot Password.");
+        displayMessage('error', "Incorrect password.");
       }
     }
 
@@ -231,7 +231,7 @@ body>
           displayMessage('success', "Password reset successfully.");
           window.location.href = "bk.html";
         } else {
-          displayMessage('error', "Invalid password. Please try again.");
+          displayMessage('error', "Invalid password.");
         }
       } else {
         displayMessage('error', "Wallet address does not match. Unable to reset password.");
