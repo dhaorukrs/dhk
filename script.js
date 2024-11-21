@@ -61,12 +61,24 @@ function updateCountdown() {
 // Claim hours when the claim button is clicked
 function claimHours() {
     const now = new Date();
+    const claimButton = document.getElementById('claimButton');
+
     if (!lastClaim || now - lastClaim >= claimTime) {
+        // Trigger the flip animation
+        if (claimButton) {
+            claimButton.classList.add('flip');
+            setTimeout(() => {
+                claimButton.classList.remove('flip');
+            }, 600); // Duration matches the animation time
+        }
+
+        // Update balance and save to localStorage
         balance += 10;
         updateBalance();
         lastClaim = new Date();
         localStorage.setItem('lastClaim', lastClaim);
         localStorage.setItem('balance', balance);
+
         updateCountdown();
     }
 }
