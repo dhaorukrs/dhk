@@ -229,7 +229,7 @@ body>
         if (newPassword && newPassword.length === 4) {
           localStorage.setItem("password", newPassword);
           displayMessage('success', "Password reset successfully.");
-          window.location.href = "bk2.html";
+          window.location.href = "bk.html";
         } else {
           displayMessage('error', "Invalid password. Please try again.");
         }
