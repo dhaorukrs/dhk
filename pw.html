@@ -1,3 +1,5 @@
+body>
+  </html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +105,18 @@
       cursor: pointer;
     }
 
+    .back-button {
+      width: 180px;
+      height: 40px;
+      font-size: 18px;
+      background-color: red;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
     .error-message, .success-message {
       color: #fff;
       font-size: 16px;
@@ -116,7 +130,6 @@
     .success-message {
       color: green;
     }
-
   </style>
 </head>
 <body>
@@ -143,6 +156,7 @@
     </div>
     <button class="submit-button" onclick="checkPassword()">Enter</button>
     <div class="forgot-password" onclick="showResetForm()">Forgot Password?</div>
+    <button class="back-button" onclick="goBack()">Back</button>
     <div id="message-container">
       <div id="error-message" class="error-message"></div>
       <div id="success-message" class="success-message"></div>
@@ -151,16 +165,12 @@
 
   <div id="reset-container" class="reset-container">
     <input type="text" id="wallet-address" placeholder="Enter wallet address">
+    <input type="password" id="new-password" placeholder="Enter a new password">
     <button class="reset-button" onclick="resetPassword()">Reset Password</button>
+    <button class="back-button" onclick="showInitialContainer()">Back</button>
   </div>
 
   <script>
-    // Check if a password is already saved
-    function checkIfPasswordExists() {
-      return localStorage.getItem("password") !== null;
-    }
-
-    // Function to add number to password input field
     function addNumber(number) {
       const passwordInput = document.getElementById("password-input");
       if (passwordInput.value.length < 4) {
@@ -168,61 +178,58 @@
       }
     }
 
-    // Function to delete the last entered number
     function deleteNumber() {
       const passwordInput = document.getElementById("password-input");
       passwordInput.value = passwordInput.value.slice(0, -1);
     }
 
-    // Function to check password
     function checkPassword() {
       const passwordInput = document.getElementById("password-input");
       const savedPassword = localStorage.getItem("password");
 
       if (!savedPassword) {
-        // If no password saved, set it
         localStorage.setItem("password", passwordInput.value);
         displayMessage('success', "Password set successfully.");
         return;
       }
 
       if (passwordInput.value === savedPassword) {
-        // Redirect to another page if the password matches
         displayMessage('success', "Password correct! Redirecting...");
         window.location.href = "bk.html";
       } else {
-        // Show custom error message if password is incorrect
         displayMessage('error', "Incorrect password. If you forgot your password, please tap on Forgot Password.");
       }
     }
 
-    // Function to display custom messages
     function displayMessage(type, message) {
       const messageContainer = document.getElementById(type === 'error' ? 'error-message' : 'success-message');
       messageContainer.textContent = message;
       messageContainer.style.display = 'block';
       setTimeout(() => {
         messageContainer.style.display = 'none';
-      }, 4000); // Hide after 4 seconds
+      }, 4000);
     }
 
-    // Function to show the reset form and hide the initial container
     function showResetForm() {
       document.getElementById("initial-container").style.display = "none";
       document.getElementById("reset-container").style.display = "block";
     }
 
-    // Function to reset the password
+    function showInitialContainer() {
+      document.getElementById("reset-container").style.display = "none";
+      document.getElementById("initial-container").style.display = "block";
+    }
+
     function resetPassword() {
       const walletAddress = document.getElementById("wallet-address").value;
       const savedWallet = localStorage.getItem("walletAddress");
+      const newPassword = document.getElementById("new-password").value;
 
       if (walletAddress === savedWallet) {
-        const newPassword = prompt("Enter a new password:");
         if (newPassword && newPassword.length === 4) {
           localStorage.setItem("password", newPassword);
           displayMessage('success', "Password reset successfully.");
-          window.location.href = "bk2.html"; // Redirect after resetting password
+          window.location.href = "bk2.html";
         } else {
           displayMessage('error', "Invalid password. Please try again.");
         }
@@ -231,17 +238,15 @@
       }
     }
 
-    // Function to save wallet address during setup (You can call this when the user first sets up their wallet)
-    function saveWalletAddress(address) {
-      localStorage.setItem("walletAddress", address);
+    function goBack() {
+      history.back();
     }
 
-    // Check if password exists when the page loads
-    window.onload = function() {
-      if (!checkIfPasswordExists()) {
+    window.onload = function () {
+      if (!localStorage.getItem("password")) {
         displayMessage('error', "Please set a password.");
       }
-    }
+    };
   </script>
 </body>
-  </html>
+</html>
