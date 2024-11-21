@@ -1,5 +1,3 @@
-body>
-  </html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,6 +167,11 @@ body>
     <button class="reset-button" onclick="resetPassword()">Reset Password</button>
     <button class="back-button" onclick="showInitialContainer()">Back</button>
   </div>
+  
+  <div id="reset-message-container">
+    <div id="reset-error-message" class="error-message"></div>
+    <div id="reset-success-message" class="success-message"></div>
+  </div>
 
   <script>
     function addNumber(number) {
@@ -189,7 +192,7 @@ body>
 
       if (!savedPassword) {
         localStorage.setItem("password", passwordInput.value);
-        displayMessage('success', "Password set successfully,Tap enter!!");
+        displayMessage('success', "Password set successfully, Tap enter!!");
         return;
       }
 
@@ -228,14 +231,23 @@ body>
       if (walletAddress === savedWallet) {
         if (newPassword && newPassword.length === 4) {
           localStorage.setItem("password", newPassword);
-          displayMessage('success', "Password reset successfully.");
+          displayResetMessage('success', "Password reset successfully.");
           window.location.href = "bk.html";
         } else {
-          displayMessage('error', "Invalid password.");
+          displayResetMessage('error', "Invalid password.");
         }
       } else {
-        displayMessage('error', "Wallet address does not match. Unable to reset password.");
+        displayResetMessage('error', "Wallet address does not match. Unable to reset password.");
       }
+    }
+
+    function displayResetMessage(type, message) {
+      const messageContainer = document.getElementById(type === 'error' ? 'reset-error-message' : 'reset-success-message');
+      messageContainer.textContent = message;
+      messageContainer.style.display = 'block';
+      setTimeout(() => {
+        messageContainer.style.display = 'none';
+      }, 4000);
     }
 
     function goBack() {
