@@ -74,7 +74,7 @@
 
     .reset-container {
       display: none;
-      background: rgba(0, 0, 0, 0.8);
+      background: transparent;
       padding: 10px;
       border-radius: 15px;
       margin-top: 20px;
@@ -197,7 +197,7 @@
       }
 
       if (passwordInput.value === savedPassword) {
-        displayMessage('success', "Password correct! Redirecting...");
+        displayMessage('success', "Password correct!");
         window.location.href = "bk.html";
       } else {
         displayMessage('error', "Incorrect password.");
@@ -210,7 +210,7 @@
       messageContainer.style.display = 'block';
       setTimeout(() => {
         messageContainer.style.display = 'none';
-      }, 4000);
+      }, 6000);
     }
 
     function showResetForm() {
@@ -247,7 +247,7 @@
       messageContainer.style.display = 'block';
       setTimeout(() => {
         messageContainer.style.display = 'none';
-      }, 4000);
+      }, 6000);
     }
 
     function goBack() {
