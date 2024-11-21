@@ -69,7 +69,7 @@ function claimHours() {
             claimButton.classList.add('flip');
             setTimeout(() => {
                 claimButton.classList.remove('flip');
-            }, 600); // Duration matches the animation time
+            }, 2000); // Duration matches the animation time
         }
 
         // Update balance and save to localStorage
