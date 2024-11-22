@@ -158,7 +158,7 @@ button:disabled {
 }
 
 #claimButton.flip {
-    animation: flip 2s ease-in-out;
+    animation: flip 3s ease-in-out;
 }
 
 /* Countdown Timer Styles */
