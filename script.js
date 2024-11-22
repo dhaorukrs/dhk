@@ -69,7 +69,7 @@ function claimHours() {
             claimButton.classList.add('flip');
             setTimeout(() => {
                 claimButton.classList.remove('flip');
-            }, 2000); // Duration matches the animation time
+            }, 3000); // Duration matches the animation time
         }
 
         // Update balance and save to localStorage
@@ -83,7 +83,7 @@ function claimHours() {
     }
 }
 
-// Custom message display function
+// Custom message display function with specific styles for verifying message
 function displayMessage(message) {
     const messageElement = document.createElement('div');
     messageElement.textContent = message;
@@ -91,17 +91,28 @@ function displayMessage(message) {
     messageElement.style.top = '50%';
     messageElement.style.left = '50%';
     messageElement.style.transform = 'translate(-50%, -50%)';
-    messageElement.style.backgroundColor = '#333';
-    messageElement.style.color = '#fff';
     messageElement.style.padding = '10px 30px';
-    messageElement.style.borderRadius = '5px';
+    messageElement.style.borderRadius = '15px'; // Blunt edges
     messageElement.style.zIndex = '1000';
     messageElement.style.boxShadow = '0 2px 10px rgba(0,0,0,0.5)';
+
+    // Apply specific styles for verifying message
+    if (message === "Verifying tasks... please complete it fairly") {
+        messageElement.style.color = 'green';
+        messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; // Transparent background
+        messageElement.style.border = '2px solid red';
+    } else {
+        // Default styles for other messages
+        messageElement.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; // Transparent white background
+        messageElement.style.border = '2px solid red';
+        messageElement.style.color = '#000';
+    }
+
     document.body.appendChild(messageElement);
 
     setTimeout(() => {
         document.body.removeChild(messageElement);
-    }, 5000); // Message will disappear after 5 seconds
+    }, 10000); // Message will disappear after 10 seconds
 }
 
 // Handle task completion
@@ -126,6 +137,12 @@ function startTask(taskId, url) {
     }
 
     window.open(url, '_blank');
+
+    // After 10 seconds, display "Verifying tasks... please complete it fairly"
+    setTimeout(() => {
+        displayMessage("Verifying tasks... please complete it fairly");
+    }, 10000);
+
     setTimeout(() => {
         displayMessage("You have received 10 hours for completing the task!");
         balance += 10;
@@ -152,7 +169,7 @@ function startTask(taskId, url) {
             taskButton.disabled = true;
             taskButton.textContent = "Completed";
         }
-    }, 23000); // 23 seconds delay
+    }, 30000); // 30 seconds delay
 }
 
 // Initial setup on page load
