@@ -3,78 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks - Dark Hours</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Task Page</title>
     <style>
         body {
-            background-image: url('darkhour.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: repeat;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background: url('darkhour.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
         }
+
         header {
+            background-color: transparent;
+            color: #fff;
             text-align: center;
-            padding: 5px;
+            padding: 0.4rem 0;
+            font-size: 0.8rem;
+            border: 2px solid red;
+            border-radius: 20px;
         }
-        .bordered-text {
-            display: inline-block;
-            padding: 8px 16px;
-            border: 2px solid #fff; /* White border */
-            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent black background */
-            color: #fff; /* White text */
-            font-size: 18px;
-            border-radius: 10px; /* Slightly rounded corners */
-            margin: 10px auto;
+
+        #taskList {
+            max-height: 60vh;
+            overflow-y: auto;
+            margin: 1rem auto;
+            padding: 0;
+            list-style: none;
+            width: 88%;
         }
-        .bordered-text-green {
-            display: inline-block;
-            padding: 8px 16px;
-            border: 2px solid #00ff00; /* Green border */
-            background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent black background */
-            color: #fff; /* White text */
-            font-size: 18px;
-            border-radius: 10px; /* Slightly rounded corners */
-            margin: 10px auto;
+
+        .task {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 2px solid #ddd;
+            margin: 1rem 0;
+            padding: 0.3rem;
+            border-radius: 15px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .task button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            width: 80%;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .task button.green {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .task button.red {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .task button.white {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+            cursor: default;
+        }
+
+        .task button.skyblue {
+            background-color: #0000FF;
+            color: #fff;
+        }
+
+        input {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            border-radius: 15px;
+            width: 80%;
+            margin-top: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 15px;
+            z-index: 1000;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 90%;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 5px;
+            border: 2px solid white;
+            border-radius: 30px;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .footer-nav {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-nav li {
+            display: inline;
+        }
+
+        .footer-nav img {
+            width: 52px;
+            height: 52px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h5 class="bordered-text-green">+10 hours for every fair Completion</h5>
-    </header>
-    <section>
-        <p>Complete the tasks fairly or claim your $hours fearly...:</p>
-        <ul class="task-list">
-            <li>
-                SUBSCRIBE TO OUR OFFICIAL YOUTUBE : 
-                <button class="startButton" onclick="startTask('task29', 'https://www.youtube.com/@globaldarkhours')">Start</button>
-            </li>
-            <li>
-                SUBSCRIBE TO DARK HOURS NEWS : 
-                <button class="startButton" onclick="startTask('task30', 'https://www.youtube.com/@DARKHOURS-NEWS')">Start</button>
-            </li>
-            <li>
-                JOIN OUR OFFICIAL TELEGRAM : 
-                <button class="startButton" onclick="startTask('task31', 'https://t.me/Official_Dark_Hours')">Start</button>
-            </li>
-            <li>
-                FOLLOW OUR OFFICIAL X : 
-                <button class="startButton" onclick="startTask('task32', 'https://x.com/globaldarkhours?t=lfgqhQf7niO3QZwHfS25VA&s=09')">Start</button>
-            </li>
+<header>
+    <h3>Complete the task fairly or claim your hours fearly</h3>
+</header>
+
+<ul id="taskList">
+    <!-- Dynamically generated tasks -->
+</ul>
+
+<footer>
+    <nav>
+        <ul class="footer-nav">
+            <li><a href="index.html"><img src="home.png" alt="Home"></a></li>
+            <li><a href="Tasks.html"><img src="earn.png" alt="Tasks"></a></li>
+            <li><a href="Frens.html"><img src="frens.png" alt="Frens"></a></li>
+            <li><a href="Wallet.html"><img src="wallet.png" alt="Wallet"></a></li>
         </ul>
-    </section>
-    <footer>
-        <nav>
-            <ul class="footer-nav">
-                <li><a href="index.html"><img src="home.png" alt="Home"></a></li>
-                <li><a href="Tasks.html"><img src="earn.png" alt="Tasks"></a></li>
-                <li><a href="Frens.html"><img src="frens.png" alt="Frens"></a></li>
-                <li><a href="Wallet.html"><img src="wallet.png" alt="Wallet"></a></li>
-            </ul>
-        </nav>
-    </footer>
-    <script src="script.js"></script>
+    </nav>
+</footer>
+
+<script>
+    const tasks = [
+        { id: 1, description: "Subscribe to our YouTube", link: "https://www.youtube.com/@globaldarkhours", code: "1234" },
+        { id: 2, description: "Follow our Twitter", link: "https://x.com/globaldarkhours?t=TMWb9X-ZucSkKRfNNKVhJg&s=09", code: "5678" },
+        { id: 3, description: "Join our Telegram", link: "https://t.me/Official_Dark_Hours", code: "1011" },
+        { id: 4, description: "Follow our Instagram", link: "https://www.instagram.com/officialdarkhours?igsh=MXBwOXRwbnZtNml6bA==", code: "1213" },
+        { id: 5, description: "Follow our TikTok", link: "https://www.tiktok.com/@officialdarkhours?_t=8rbp4JIrHQG&_r=1", code: "1415" },
+    ];
+
+    const taskList = document.getElementById('taskList');
+    let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 0;
+    const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+    function displayMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.className = 'message';
+        messageElement.textContent = message;
+        document.body.appendChild(messageElement);
+
+        setTimeout(() => {
+            document.body.removeChild(messageElement);
+        }, 3000);
+    }
+
+    function saveCompletedTask(taskId) {
+        completedTasks.push(taskId);
+        localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+    }
+
+    tasks.forEach(task => {
+        const taskItem = document.createElement('li');
+        taskItem.className = 'task';
+
+        if (completedTasks.includes(task.id)) {
+            taskItem.innerHTML = `
+                <p>${task.description}</p>
+                <button class="white" disabled>Completed</button>
+            `;
+        } else {
+            taskItem.innerHTML = `
+                <p>${task.description}</p>
+                <button id="start-${task.id}" class="skyblue">Start</button>
+            `;
+        }
+
+        taskList.appendChild(taskItem);
+
+        if (!completedTasks.includes(task.id)) {
+            const startButton = document.getElementById(`start-${task.id}`);
+
+            startButton.addEventListener('click', () => {
+                window.open(task.link, '_blank');
+
+                setTimeout(() => {
+                    startButton.classList.add('hidden');
+
+                    const codeInput = document.createElement('input');
+                    codeInput.type = 'text';
+                    codeInput.placeholder = 'Type your code';
+
+                    const submitButton = document.createElement('button');
+                    submitButton.textContent = 'Submit';
+
+                    submitButton.addEventListener('click', () => {
+                        if (codeInput.value === task.code) {
+                            submitButton.classList.add('hidden');
+                            codeInput.classList.add('hidden');
+
+                            const claimButton = document.createElement('button');
+                            claimButton.textContent = 'Claim';
+                            claimButton.className = 'green';
+
+                            claimButton.addEventListener('click', () => {
+                                balance += 10;
+                                localStorage.setItem('balance', balance);
+                                claimButton.classList.add('hidden');
+
+                                const completedButton = document.createElement('button');
+                                completedButton.textContent = 'Completed';
+                                completedButton.className = 'white';
+                                completedButton.disabled = true;
+                                taskItem.appendChild(completedButton);
+
+                                saveCompletedTask(task.id);
+                            });
+
+                            taskItem.appendChild(claimButton);
+                        } else {
+                            displayMessage("Incorrect pin, please redo the task");
+
+                            submitButton.classList.add('hidden');
+                            codeInput.classList.add('hidden');
+
+                            const redoButton = document.createElement('button');
+                            redoButton.textContent = 'Redo';
+                            redoButton.className = 'red';
+
+                            redoButton.addEventListener('click', () => {
+                                window.open(task.link, '_blank');
+
+                                setTimeout(() => {
+                                    redoButton.classList.add('hidden');
+                                    codeInput.classList.remove('hidden');
+                                    submitButton.classList.remove('hidden');
+                                }, 4000);
+                            });
+
+                            taskItem.appendChild(redoButton);
+                        }
+                    });
+
+                    taskItem.appendChild(codeInput);
+                    taskItem.appendChild(submitButton);
+                }, 4000);
+            });
+        }
+    });
+</script>
 </body>
 </html>
