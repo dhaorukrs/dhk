@@ -225,110 +225,125 @@
     </main>
     <script>
         const rewards = [
-            10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150,
-            160, 170, 180, 190, 200, 210, 220, 230, 240,
-            Math.floor(Math.random() * (500 - 300 + 1)) + 300 // Random reward for Day 25
-        ];
+    10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150,
+    160, 170, 180, 190, 200, 210, 220, 230, 240,
+    Math.floor(Math.random() * (500 - 300 + 1)) + 300 // Random reward for Day 25
+];
 
-        const calendarContainer = document.querySelector(".calendar-container");
-        const rewardMessage = document.getElementById("reward");
-        const dateTimeDisplay = document.getElementById("date-time");
-        const claimMessage = document.getElementById("claim-message");
+const calendarContainer = document.querySelector(".calendar-container");
+const rewardMessage = document.getElementById("reward");
+const dateTimeDisplay = document.getElementById("date-time");
+const claimMessage = document.getElementById("claim-message");
 
-        let claimedDays = JSON.parse(localStorage.getItem("claimedDays")) || {};
+let claimedDays = JSON.parse(localStorage.getItem("claimedDays")) || {};
+let currentBalance = JSON.parse(localStorage.getItem("balance")) || 0; // Get the existing balance from localStorage
 
-        function getOrdinalSuffix(day) {
-            if (day > 10 && day < 20) return "th";
-            switch (day % 10) {
-                case 1: return "st";
-                case 2: return "nd";
-                case 3: return "rd";
-                default: return "th";
-            }
+function getOrdinalSuffix(day) {
+    if (day > 10 && day < 20) return "th";
+    switch (day % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
+    }
+}
+
+function createCalendar() {
+    const today = new Date();
+    const currentDay = today.getDate();
+
+    for (let day = 1; day <= 25; day++) {
+        const dayBox = document.createElement("div");
+        dayBox.classList.add("calendar-day");
+        let displayText = `${day}${getOrdinalSuffix(day)}`;
+        if (day === 25) displayText = "Christmas";
+
+        dayBox.textContent = displayText;
+
+        if (claimedDays[day]) {
+            dayBox.classList.add("claimed");
+            dayBox.innerHTML = `${displayText} <img src="d.png" alt="Claimed">`;
+        } else if (day < currentDay) {
+            dayBox.classList.add("missed");
+            dayBox.innerHTML = `${displayText} <img src="cn.png" alt="Missed">`;
+        } else if (day === currentDay) {
+            dayBox.innerHTML = `${displayText} <img src="g.png" alt="Claim">`;
+            dayBox.classList.add("current-day");
+            dayBox.addEventListener("click", () => claimReward(day));
         }
 
-        function createCalendar() {
-            const today = new Date();
-            const currentDay = today.getDate();
+        calendarContainer.appendChild(dayBox);
+    }
+}
 
-            for (let day = 1; day <= 25; day++) {
-                const dayBox = document.createElement("div");
-                dayBox.classList.add("calendar-day");
-                let displayText = `${day}${getOrdinalSuffix(day)}`;
-                if (day === 25) displayText = "Christmas";
+function claimReward(day) {
+    if (!claimedDays[day]) {
+        const reward = rewards[day - 1];
+        claimedDays[day] = reward;
 
-                dayBox.textContent = displayText;
+        // Update the balance by adding the claimed reward
+        currentBalance += reward;
 
-                if (claimedDays[day]) {
-                    dayBox.classList.add("claimed");
-                    dayBox.innerHTML = `${displayText} <img src="d.png" alt="Claimed">`;
-                } else if (day < currentDay) {
-                    dayBox.classList.add("missed");
-                    dayBox.innerHTML = `${displayText} <img src="cn.png" alt="Missed">`;
-                } else if (day === currentDay) {
-                    dayBox.innerHTML = `${displayText} <img src="g.png" alt="Claim">`;
-                    dayBox.classList.add("current-day");
-                    dayBox.addEventListener("click", () => claimReward(day));
-                }
+        // Save the updated claimedDays and balance in localStorage
+        localStorage.setItem("claimedDays", JSON.stringify(claimedDays));
+        localStorage.setItem("balance", JSON.stringify(currentBalance));
 
-                calendarContainer.appendChild(dayBox);
-            }
-        }
+        showClaimMessage(`You have claimed ${reward} Hours for Day ${day}!`);
+        updateBalanceDisplay();
+        updateCalendar();
+    }
+}
 
-        function claimReward(day) {
-            if (!claimedDays[day]) {
-                claimedDays[day] = rewards[day - 1];
-                localStorage.setItem("claimedDays", JSON.stringify(claimedDays));
-                                showClaimMessage(`You have claimed ${rewards[day - 1]} Hours for Day ${day}!`);
-                                updateCalendar();
-                            }
-                        }
+function updateBalanceDisplay() {
+    rewardMessage.textContent = `${currentBalance} Hours`; // Update the displayed balance
+}
 
-                        function updateCalendar() {
-                            calendarContainer.innerHTML = ""; // Clear the calendar
-                            createCalendar(); // Rebuild the calendar with updated data
-                        }
+function updateCalendar() {
+    calendarContainer.innerHTML = ""; // Clear the calendar
+    createCalendar(); // Rebuild the calendar with updated data
+}
 
-                        function showClaimMessage(message) {
-                            claimMessage.textContent = message;
-                            claimMessage.style.display = "block";
-                            setTimeout(() => {
-                                claimMessage.style.display = "none";
-                            }, 3000); // Hide message after 3 seconds
-                        }
+function showClaimMessage(message) {
+    claimMessage.textContent = message;
+    claimMessage.style.display = "block";
+    setTimeout(() => {
+        claimMessage.style.display = "none";
+    }, 3000); // Hide message after 3 seconds
+}
 
-                        function updateDateTime() {
-                            const now = new Date();
-                            const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-                            dateTimeDisplay.textContent = now.toLocaleDateString("en-US", options);
-                        }
+function updateDateTime() {
+    const now = new Date();
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    dateTimeDisplay.textContent = now.toLocaleDateString("en-US", options);
+}
 
-                        document.addEventListener("DOMContentLoaded", () => {
-                            updateDateTime();
-                            rewardMessage.textContent = `${rewards[new Date().getDate() - 1]} Hours`;
-                            createCalendar();
-                        });
+document.addEventListener("DOMContentLoaded", () => {
+    updateDateTime();
+    rewardMessage.textContent = `${rewards[new Date().getDate() - 1]} Hours`;
+    createCalendar();
+    updateBalanceDisplay(); // Display the current balance when the page loads
+});
 
-                        // Add snowfall effect
-                        const snowflakeChars = ["❄", "❅", "❆"];
-                        const body = document.querySelector("body");
+// Add snowfall effect
+const snowflakeChars = ["❄", "❅", "❆"];
+const body = document.querySelector("body");
 
-                        function createSnowflake() {
-                            const snowflake = document.createElement("div");
-                            snowflake.className = "snowflake";
-                            snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
-                            snowflake.style.left = Math.random() * 100 + "vw";
-                            snowflake.style.animationDuration = Math.random() * 3 + 5 + "s";
-                            snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
-                            body.appendChild(snowflake);
+function createSnowflake() {
+    const snowflake = document.createElement("div");
+    snowflake.className = "snowflake";
+    snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+    snowflake.style.left = Math.random() * 100 + "vw";
+    snowflake.style.animationDuration = Math.random() * 3 + 5 + "s";
+    snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
+    body.appendChild(snowflake);
 
-                            // Remove snowflake after animation ends
-                            setTimeout(() => {
-                                snowflake.remove();
-                            }, 8000);
-                        }
+    // Remove snowflake after animation ends
+    setTimeout(() => {
+        snowflake.remove();
+    }, 8000);
+}
 
-                        setInterval(createSnowflake, 300); // Create snowflakes every 300ms
+setInterval(createSnowflake, 300); // Create snowflakes every 300ms
                     </script>
                 </body>
 </html>
