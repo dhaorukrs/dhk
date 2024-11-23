@@ -279,7 +279,7 @@
             if (!claimedDays[day]) {
                 claimedDays[day] = rewards[day - 1];
                 localStorage.setItem("claimedDays", JSON.stringify(claimedDays));
-                                showClaimMessage(`You have claimed ${rewards[day - 1]} USDT for Day ${day}!`);
+                                showClaimMessage(`You have claimed ${rewards[day - 1]} hours for Day ${day}!`);
                                 updateCalendar();
                             }
                         }
