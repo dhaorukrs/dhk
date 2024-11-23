@@ -279,7 +279,7 @@
             if (!claimedDays[day]) {
                 claimedDays[day] = rewards[day - 1];
                 localStorage.setItem("claimedDays", JSON.stringify(claimedDays));
-                                showClaimMessage(`You have claimed ${rewards[day - 1]} hours for Day ${day}!`);
+                                showClaimMessage(`You have claimed ${rewards[day - 1]} Hours for Day ${day}!`);
                                 updateCalendar();
                             }
                         }
@@ -305,7 +305,7 @@
 
                         document.addEventListener("DOMContentLoaded", () => {
                             updateDateTime();
-                            rewardMessage.textContent = `${rewards[new Date().getDate() - 1]} USDT`;
+                            rewardMessage.textContent = `${rewards[new Date().getDate() - 1]} Hours`;
                             createCalendar();
                         });
 
