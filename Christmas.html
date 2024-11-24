@@ -110,7 +110,7 @@
 
         .claim-message {
             position: fixed;
-            top: 20%;
+            top: 50%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.8);
@@ -223,7 +223,7 @@
         </div>
         <button class="back-button" onclick="location.href='index.html'">Back</button>
         <div class="text-container">
-            <p><b>A chance to win up to 100 USDT on Christmas:</b></p>
+            <p><b>Stand a chance to win up to 100 USDT on Christmas:</b></p>
             <p>REQUIREMENTS:</p>
             <p>1. Collect all the daily checks</p>
             <p>2. Refer 5 friends</p>
@@ -295,7 +295,7 @@ function claimReward(day) {
         localStorage.setItem("claimedDays", JSON.stringify(claimedDays));
         localStorage.setItem("balance", JSON.stringify(currentBalance));
 
-        showClaimMessage(`You have claimed ${reward} Hours for Day ${day}!`);
+        showClaimMessage(`${reward} Hours claimed for Day ${day}!`);
         updateBalanceDisplay();
         updateCalendar();
     }
