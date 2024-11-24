@@ -21,14 +21,15 @@
     .selected-box-display {
       display: grid;
       grid-template-columns: repeat(3, 90px); /* Three equal parts */
-      grid-gap: 6px;
-      margin-bottom: 20px;
+      grid-gap: 5px;
+      margin-bottom: 15px;
       justify-items: center;
+      border-radius: 15px;
     }
 
     .selected-box {
-      width: 78px;
-      height: 75px;
+      width: 75px;
+      height: 73px;
       background-color: transparent;
       display: flex;
       align-items: center;
@@ -41,23 +42,23 @@
     .game-board {
       display: grid;
       grid-template-columns: repeat(3, 85px);
-      grid-gap: 10px;
-      margin-bottom: 18px;
+      grid-gap: 5px;
+      margin-bottom: 15px;
     }
     
     .selected-box img {
       height: 75px; /* Adjust width as needed */
-      width: 78px; /* Adjust height as needed */
+      width: 73px; /* Adjust height as needed */
       object-fit: contain; /* Ensures the image fits within the specified dimensions */
     }
     
     .box {
       width: 70px;
       height: 70px;
-      background-color: html;
+      background-color: transparent;
       display: flex;
       border: 2px solid #333;
-      border-radius: 8px; /* Blunt edges */
+      border-radius: 15px; /* Blunt edges */
       cursor: pointer;
     }
 
