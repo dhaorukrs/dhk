@@ -311,7 +311,18 @@ function updateCalendar() {
 }
 
 function showClaimMessage(message) {
-    claimMessage.innerHTML = `<img src="ccc.png" alt="Claimed Icon" style="width: 30px; height: 30px; margin-right: 10px; vertical-align: middle;"> ${message}`;
+    claimMessage.innerHTML = `
+        <img 
+            src="ccc.png" 
+            alt="Claimed Icon" 
+            style="
+                width: 30px; 
+                height: 30px; 
+                margin-right: 10px; 
+                vertical-align: middle; 
+                border-radius: 50%; /* Makes the image circular */
+            "> 
+        ${message}`;
     claimMessage.style.display = "block";
     setTimeout(() => {
         claimMessage.style.display = "none";
