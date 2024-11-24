@@ -110,10 +110,10 @@
 
         .claim-message {
             position: fixed;
-            top: 50%;
+            top: 30%;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             color: #fff;
             padding: 10px;
             border-radius: 15px;
@@ -295,7 +295,7 @@ function claimReward(day) {
         localStorage.setItem("claimedDays", JSON.stringify(claimedDays));
         localStorage.setItem("balance", JSON.stringify(currentBalance));
 
-        showClaimMessage(`${reward} Hours claimed for Day ${day}!`);
+        showClaimMessage(`Congrats! you claimed ${reward} Hours for Day ${day}!`);
         updateBalanceDisplay();
         updateCalendar();
     }
