@@ -51,7 +51,7 @@
             max-width: 350px; /* Smaller overall width */
             margin: 10px auto;
             padding: 0px;
-            background-color: rgba(255, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
         }
 
@@ -204,6 +204,21 @@
         .text-container b {
             color: #ffd700;
         }
+    
+        .btn {
+            background-color: red;  /* Red background color */
+            color: white;           /* White text color */
+            border: none;           /* Remove border */
+            padding: 8px 15px;     /* Add padding */
+            font-size: 1em;        /* Font size */
+            cursor: pointer;       /* Change cursor to pointer */
+            border-radius: 15px;     /* Optional: Rounded corners */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        .btn:hover {
+            background-color: darkred;  /* Darker red when hovered */
+        }
     </style>
 </head>
 <body>
@@ -222,12 +237,14 @@
             <p id="date-time"></p>
         </div>
         <button class="back-button" onclick="location.href='index.html'">Back</button>
-        <div class="text-container">
-            <p><b>Stand a chance to win up to 100 USDT on Christmas:</b></p>
-            <p>REQUIREMENTS:</p>
-            <p>1. Collect all the daily checks</p>
-            <p>2. Refer 5 friends</p>
-        </div>
+      <div class="text-container">
+    <p><b>Stand a chance to win up to 100 USDT on Christmas:</b></p>
+    <p>REQUIREMENTS:</p>
+    <p>1. Collect all the daily checks</p>
+    <p>2. Refer 5 friends</p>
+</div>
+        <div><p><button onclick="window.location.href='win.html'" class="btn">View Winners</button></p></div>
+        
         <div id="claim-message" class="claim-message"></div>
     </main>
     <script>
