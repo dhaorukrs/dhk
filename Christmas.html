@@ -137,6 +137,13 @@
             user-select: none;
         }
 
+        .claim-icon {
+            width: 30px; /* Adjust size as needed */
+            height: 30px;
+            vertical-align: middle;
+            margin-right: 10px; /* Space between image and text */
+        }
+
         .back-button {
             margin-top: 15px;
             padding: 8px 15px;
@@ -304,11 +311,11 @@ function updateCalendar() {
 }
 
 function showClaimMessage(message) {
-    claimMessage.textContent = message;
+    claimMessage.innerHTML = `<img src="ccc.png" alt="Claimed Icon" style="width: 30px; height: 30px; margin-right: 10px; vertical-align: middle;"> ${message}`;
     claimMessage.style.display = "block";
     setTimeout(() => {
         claimMessage.style.display = "none";
-    }, 3000); // Hide message after 3 seconds
+    }, 5000); // Hide message after 5 seconds
 }
 
 function updateDateTime() {
