@@ -96,17 +96,50 @@
     }
 
     .note {
-      font-size: 0.7rem;
-      margin: 0px 0;
-      color: #555;
-      text-align: left;
-      padding: 2px;
-      border: 2px solid #000;
-      border-radius: 10px;
-      background-color: rgba(200, 200, 200, 0.7);
-      width: 75%;
-      max-width: 600px;
-    }
+            position: relative;
+            margin: 15px auto;
+            padding: 10px;
+            width: 80%;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: left;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .note::before,
+        .note::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            border: 5px solid red;
+            animation: borderFlow 4s linear infinite;
+        }
+
+        .note::after {
+            border: 5px solid green;
+            animation-delay: 2s;
+        }
+
+        @keyframes borderFlow {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .note p {
+            margin: 5px 0;
+            font-size: 1.0em;
+        }
+
+        .note b {
+            color: #ffd700;
+        }
+
 
     #back-btn{
       padding: 10px 15px;
