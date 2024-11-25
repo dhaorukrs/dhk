@@ -5,204 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #000;
-        background-image: url('darkhour.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: repeat;
-        color: #fff;
-        text-align: center;
-        animation: fadeIn 1.5s ease-in-out;
-    }
-
-    /* Fade-in animation for body */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            background-image: url('darkhour.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            color: #fff;
+            text-align: center;
         }
-        to {
-            opacity: 1;
+        header {
+            margin-top: 30px;
+            padding: 0px;
+            border: 2px solid #fff;
+            display: inline-block;
+            border-radius: 10px;
         }
-    }
-
-    header {
-        margin-top: 30px;
-        padding: 0px;
-        border: 2px solid #fff;
-        display: inline-block;
-        border-radius: 10px;
-    }
-
-    #walletContainer {
-        margin-top: 50px;
-        padding: 7px;
-        border: 2px solid #fff;
-        border-radius: 20px;
-        display: inline-block;
-        animation: slideDown 1s ease-in-out;
-    }
-
-    /* Slide-down animation for wallet container */
-    @keyframes slideDown {
-        from {
-            transform: translateY(-30px);
-            opacity: 0;
+        #walletContainer {
+            margin-top: 50px;
+            padding: 7px;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            display: inline-block;
         }
-        to {
-            transform: translateY(0);
-            opacity: 1;
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            background-color: #000;
+            color: #fff;
         }
-    }
-
-    input[type="text"] {
-        padding: 10px;
-        width: 250px;
-        border: 1px solid #fff;
-        border-radius: 15px;
-        background-color: #000;
-        color: #fff;
-        transition: all 0.3s ease-in-out;
-    }
-
-    input[type="text"]:focus {
-        outline: none;
-        box-shadow: 0 0 10px #fff;
-    }
-
-    button {
-        padding: 10px 20px;
-        background-color: #fff;
-        color: #000;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    button:hover {
-        background-color: #ccc;
-        transform: scale(1.05);
-    }
-
-    .wallet-display {
-        font-size: 18px;
-        color: #fff;
-        background-color: #000;
-        border: 2px solid #fff;
-        border-radius: 20px;
-        padding: 10px;
-        max-width: 250px;
-        margin: 20px auto;
-        word-wrap: break-word;
-        animation: fadeIn 1s ease-in-out;
-    }
-
+        button {
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 15px; /* Rounds edges to make them less sharp */
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #ccc;
+        }
+        .wallet-display {
+            font-size: 18px;
+            color: #fff;
+            background-color: #000;
+            border: 2px solid #fff;
+            border-radius: 20px;
+            padding: 10px;
+            max-width: 250px;
+            margin: 20px auto;
+            word-wrap: break-word;
+        }
+        
     .task-container {
         margin-top: 50px;
-        padding: 5px;
-        border: 2px solid #00ff00;
+        padding: 10px;
+        border: 5px solid #00ff00;
         border-radius: 20px;
         display: inline-block;
         width: auto;
-        animation: slideUp 1s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: borderGlow 2s infinite;
+        box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
     }
 
-    /* Slide-up animation for task container */
-    @keyframes slideUp {
-        from {
-            transform: translateY(30px);
-            opacity: 0;
+    @keyframes borderGlow {
+        0% {
+            border-color: #00ff00;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
         }
-        to {
-            transform: translateY(0);
-            opacity: 1;
+        50% {
+            border-color: #008000;
+            box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.9);
         }
-    }
-
-    .task-title {
-        border: 2px solid #00ff00;
-        padding: 3px;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        animation: zoomIn 1s ease-in-out;
-    }
-
-    /* Zoom-in animation for task title */
-    @keyframes zoomIn {
-        from {
-            transform: scale(0.9);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
+        100% {
+            border-color: #00ff00;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
         }
     }
+        .task-title {
+            border: 2px solid #00ff00;
+            padding: 3px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        footer {
+    background-color: rgba(0, 0, 0, 0.5);  /* Black background with 50% opacity */
+    width: 90%;                            /* 90% width of the screen */
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 5px;                           /* 5px above the bottom of the screen */
+    border: 2px solid white;               /* Adds a white border */
+    border-radius: 30px;                   /* Slightly rounded corners */
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    color: #ffffff;                        /* White text color */
+    left: 50%;                             /* Position it at the center */
+    transform: translateX(-50%);           /* Adjust the element by -50% of its width */
+}
 
-    footer {
-        background-color: rgba(0, 0, 0, 0.5);
-        width: 90%;
-        padding: 10px 0;
-        text-align: center;
-        position: fixed;
-        bottom: 5px;
-        border: 2px solid white;
-        border-radius: 30px;
-        box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
-        color: #ffffff;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+/* Navigation Styles */
+        nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
 
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-    }
+        nav ul li {
+    margin: 0 15px;
+}
 
-    nav ul li {
-        margin: 0 15px;
-    }
+        nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
 
-    nav ul li a {
-        text-decoration: none;
-        color: #ffffff;
-        font-weight: bold;
-    }
+        nav ul li a:hover {
+    color: #ffffff;
+}
+        /* Footer Navigation Image Styles */
+        .footer-nav {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around; /* Space the images evenly */
+    padding: 0;
+    margin:  0;
+}
 
-    nav ul li a:hover {
-        color: #00ff00;
-    }
+        .footer-nav li {
+    display: inline;
+}
 
-    .footer-nav {
-        list-style-type: none;
-        display: flex;
-        justify-content: space-around;
-        padding: 0;
-        margin: 0;
-    }
-
-    .footer-nav li {
-        display: inline;
-    }
-
-    .footer-nav img {
-        width: 52px;
-        height: 52px;
-    }
-
-    .footer-nav img:hover {
-        transform: scale(1.1);
-    }
-
-    #taskContent {
-        animation: slideDown 1s ease-in-out;
-    }
+        .footer-nav img {
+    width: 52px; /* Adjust the size of the images */
+    height: 52px; /* Adjust the size of the images */
+}
     </style>
 </head>
 <body>
