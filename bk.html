@@ -24,6 +24,7 @@
       width: 75%;
       max-width: 700px;
       border: 2px solid #000;
+      border-radius: 12px;
       background: linear-gradient(
         90deg,
         #fef5d4, #ffe9c4, #ffd5aa, #ffb4a9, #ff91aa, #ff72b2, #5ac8fa, #f4c4f3,  
@@ -96,65 +97,49 @@
     }
 
     .note {
-      position: relative;
-      margin: 0px 0;
-      padding: 20px;
-      width: 75%;
-      max-width: 600px;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      text-align: left;
-      border-radius: 15px;
-    }
+     font-size: 0.7rem;
+     margin: 0px 0;
+     padding: 2px;
+     border: 0px solid #00ff00;
+     border-radius: 12px;
+     display: inline-block;
+     width: 75%;
+     max-width: 600px;
+     text-align: left;
+     color: #fff;
+     background-color: rgba(0, 0, 0, 0.7);
+     animation: borderGlow 2s infinite;
+     box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+       }
 
-    .note::before,
-    .note::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      border: 5px solid red;
-      animation: borderFlow 4s linear infinite;
-    }
+    @keyframes borderGlow {
+        0% {
+     border-color: #00ff00;
+     box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+        }
+        50% {
+     border-color: #008000;
+     box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.9);
+        }
+        100% {
+     border-color: #00ff00;
+     box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+        }
+        };
 
-    .note::after {
-      border: 5px solid green;
-      animation-delay: 2s;
-    }
-
-@keyframes borderFlow {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-    }
-
-    .note p {
-      margin: 5px 0;
-      font-size: 0.7em;
-    }
-
-    .note b {
-      color: #ffd700;
-    }
-
-            
-
-
-    #back-btn{
-      padding: 6px 12px;
+    
+    #back-btn {
+      padding: 4px 12px;
       background-color: red;
       color: #fff;
       border: none;
       border-radius: 15px;
       cursor: pointer;
-      margin: 10px 5px;
+      margin: 9px 4px;
     }
-    
+
     #send-backup-btn {
-      padding: 5px 9px;
+      padding: 3px 9px;
       background-color: green;
       color: #fff;
       border: none;
@@ -163,18 +148,45 @@
       margin: 9px 4px;
     }
 
-    #back-btn:hover {
-      background-color: #8B0000;
+    #back-btn:hover{
+      background-color: red;
+      border-radius: 15px;
+      color: #fff;
     }
     #send-backup-btn:hover {
-      background-color: #006400;
+      background-color: #555;
     }
 
     #send-backup-btn {
       position: absolute;
-      bottom: -10px;
+      bottom: -8px;
       left: 50%;
       transform: translateX(-50%);
+    }
+
+    /* Footer styles */
+    footer {
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      background-color: rgba(0, 0, 0, 0); /* Fully transparent background */
+    }
+
+    .footer-nav {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .footer-nav li {
+      margin: 0 20px; /* Space between footer items */
+    }
+
+    .footer-nav img {
+      width: 52px; /* Set icon size */
+      height: auto; /* Maintain aspect ratio */
     }
   </style>
 </head>
@@ -204,9 +216,13 @@
     <p>2. Don't share your back up Paper with friends, Your information is your default password.</p>
     <p>3. Don't change any of the above-listed as backup won't be approved by the Bot if changed.</p>
   </div>
-
-  <button id="back-btn" onclick="goToProfile()">Back to Profile</button>
-
+  <footer>
+              <nav>
+                <ul class="footer-nav">
+                  <li><a href="profile.html"><img src="bk3.png" alt="profile"></a></li>
+                </ul>
+              </nav>
+  </footer>    
   <script>
     // Function to determine user level based on balance
     function getUserLevel(balance) {
@@ -269,4 +285,4 @@
     }
   </script>
 </body>
-</html>
+</html> 
