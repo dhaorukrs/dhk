@@ -23,11 +23,29 @@
       max-width: 300px;
       margin: 40px auto;
       padding: 15px;
-      border: 2px solid white; /* White rectangular border */
+      border: 0px solid white; /* White rectangular border */
       border-radius: 30px; /* Blunt edges */
       background-color: rgba(0, 0, 0, 0.2);
-    }
+    
+      animation: borderGlow 2s infinite;
+      box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+       }
 
+    @keyframes borderGlow {
+        0% {
+            border-color: #00ff00;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+        }
+        50% {
+            border-color: #008000;
+            box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.9);
+        }
+        100% {
+            border-color: #00ff00;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+        }
+        };
+    
     .button {
       padding: 10px;
       color: white;
@@ -112,7 +130,7 @@
     </a>
     <a href="game2.html" class="button">
       <img src="game.png" alt="Game" />
-      Lucky Boxes Game
+      Boxes Game
     </a>
   </div>
 
