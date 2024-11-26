@@ -47,6 +47,32 @@
             margin-right: auto;
         }
 
+        <style>
+  /* Add the border glow animation */
+  @keyframes borderGlow {
+    0% {
+      border-color: rgba(0, 0, 255, 0.5);
+      box-shadow: 0 0 5px rgba(0, 0, 255, 0.5), 0 0 15px rgba(0, 0, 255, 0.3);
+    }
+    50% {
+      border-color: rgba(255, 0, 255, 0.5);
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);
+    }
+    100% {
+      border-color: rgba(0, 255, 0, 0.5);
+      box-shadow: 0 0 5px rgba(0, 255, 0, 0.5), 0 0 15px rgba(0, 255, 0, 0.3);
+    }
+  }
+
+  /* Apply the glow animation to the container */
+  .container {
+    animation: borderGlow 2s infinite alternate;
+    border: 2px solid transparent; /* Ensure a defined border for the animation */
+  }
+</style>
+        
+  
+
         .winners-list {
             list-style-type: none;
             padding: 0;
