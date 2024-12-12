@@ -1,203 +1,134 @@
-// Check if a username is stored in localStorage
-document.addEventListener('DOMContentLoaded', () => {
-    const username = localStorage.getItem('username');
-    if (!username && window.location.pathname !== '/login.html') {
-        window.location.href = 'login.html';
-    } else if (username) {
-        const headerElement = document.querySelector('header h3');
-        if (headerElement) {
-            headerElement.textContent = `${username}`;
-        }
+document.addEventListener("DOMContentLoaded", () => {
+  const saveButton = document.getElementById("save-wallet");
+  const walletInput = document.getElementById("wallet-input");
+  const walletDisplay = document.getElementById("wallet-display");
+  const walletAddressSpan = document.getElementById("wallet-address");
+
+  const pointsDisplay = document.getElementById("points-display");
+
+  const footer = document.getElementById("footer");
+
+  // Load points from localStorage (default to 1000 if not found)
+  let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 1000;
+  pointsDisplay.textContent = `$DGPW: ${points}`;
+
+  // Show loading screen for 3 seconds before displaying the main content
+  setTimeout(() => {
+    document.getElementById("loading-screen").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+    footer.classList.remove("hidden"); // Show the footer after loading
+  }, 3000);
+
+  // Daily Check-In Logic
+  const lastCheckIn = localStorage.getItem("lastCheckIn");
+  const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+  if (lastCheckIn !== today) {
+    document.getElementById("daily-check-in").classList.remove("hidden");
+    localStorage.setItem("lastCheckIn", today);
+    points += 1000;
+    pointsDisplay.textContent = `Points: ${points}`;
+    localStorage.setItem("points", points); // Save updated points to localStorage
+  }
+
+  saveButton.addEventListener("click", () => {
+    const walletAddress = walletInput.value.trim();
+    if (walletAddress) {
+      localStorage.setItem("walletAddress", walletAddress); // Store the wallet address
+      walletInput.style.display = "none"; // Hide the input field
+      saveButton.style.display = "none"; // Hide the save button
+      walletDisplay.style.display = "flex"; // Show the wallet address display
+      walletAddressSpan.textContent = formatWalletAddress(walletAddress); // Display formatted wallet address
     }
-});
+  });
 
-// Existing balance and last claim
-let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 0;
-let lastClaim = localStorage.getItem('lastClaim') ? new Date(localStorage.getItem('lastClaim')) : null;
-let claimTime = 10 * 60 * 60 * 1000; // 10 hours in milliseconds
+  // Load the wallet address from localStorage (if any)
+  const savedWalletAddress = localStorage.getItem("walletAddress");
+  if (savedWalletAddress) {
+    walletInput.style.display = "none";
+    saveButton.style.display = "none";
+    walletDisplay.style.display = "flex";
+    walletAddressSpan.textContent = formatWalletAddress(savedWalletAddress);
+  }
 
-// Task rewards tracking
-let taskRewards = localStorage.getItem('taskRewards') ? JSON.parse(localStorage.getItem('taskRewards')) : {};
+  // Format the wallet address to show first 3 and last 3 characters
+  function formatWalletAddress(address) {
+    return `${address.slice(0, 3)}...${address.slice(-3)}`;
+  }
 
-// Function to update balance on page load
-function updateBalance() {
-    const balanceElement = document.getElementById('balance');
-    if (balanceElement) {
-        balanceElement.textContent = balance;
-    }
-}
+  // Task button functionality
+  const taskButtons = document.querySelectorAll(".start-task");
 
-// Handle claim button and countdown timer
-function updateCountdown() {
-    const countdownElement = document.getElementById('countdown');
-    const claimButton = document.getElementById('claimButton');
-    
-    if (lastClaim) {
-        const now = new Date();
-        const elapsed = now - lastClaim;
-        const remaining = claimTime - elapsed;
-        if (remaining > 0) {
-            const hours = Math.floor(remaining / (1000 * 60 * 60));
-            const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-            if (countdownElement) {
-                countdownElement.textContent = `${hours} hours ${minutes} minutes`;
-            }
-            if (claimButton) {
-                claimButton.disabled = true;
-                claimButton.src = "hours.png"; // Change image to hours.png when disabled
-            }
-        } else {
-            if (countdownElement) {
-                countdownElement.textContent = '';
-            }
-            if (claimButton) {
-                claimButton.disabled = false;
-                claimButton.src = "hours2.png"; // Change image to hours2.png when enabled
-            }
-        }
-    }
-}
+  taskButtons.forEach(button => {
+    const taskId = button.getAttribute("data-link"); // Get the link for the task
+    const buttonKey = `task_${taskId}`; // Create a unique key for this task button
 
-// Claim hours when the claim button is clicked
-function claimHours() {
-    const now = new Date();
-    const claimButton = document.getElementById('claimButton');
-
-    if (!lastClaim || now - lastClaim >= claimTime) {
-        // Trigger the flip animation
-        if (claimButton) {
-            claimButton.classList.add('flip');
-            setTimeout(() => {
-                claimButton.classList.remove('flip');
-            }, 3000); // Duration matches the animation time
-        }
-
-        // Update balance and save to localStorage
-        balance += 10;
-        updateBalance();
-        lastClaim = new Date();
-        localStorage.setItem('lastClaim', lastClaim);
-        localStorage.setItem('balance', balance);
-
-        updateCountdown();
-    }
-}
-
-// Custom message display function with specific styles for verifying message
-function displayMessage(message) {
-    const messageElement = document.createElement('div');
-    messageElement.textContent = message;
-    messageElement.style.position = 'fixed';
-    messageElement.style.top = '50%';
-    messageElement.style.left = '50%';
-    messageElement.style.transform = 'translate(-50%, -50%)';
-    messageElement.style.padding = '10px 30px';
-    messageElement.style.borderRadius = '15px'; // Blunt edges
-    messageElement.style.zIndex = '1000';
-    messageElement.style.boxShadow = '0 2px 10px rgba(0,0,0,0.5)';
-
-    // Apply specific styles for verifying message
-    if (message === "Verifying tasks... please complete it fairly") {
-        messageElement.style.color = 'green';
-        messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.9)'; // Transparent background
-        messageElement.style.border = '2px solid red';
-    } else {
-        // Default styles for other messages
-        messageElement.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; // Transparent white background
-        messageElement.style.border = '2px solid red';
-        messageElement.style.color = '#000';
+    // Check if the task is already in the loading or completed state in localStorage
+    if (localStorage.getItem(buttonKey) === "loading") {
+      button.classList.add("loading");
+      button.textContent = "Verifying...";
+    } else if (localStorage.getItem(buttonKey) === "completed") {
+      button.classList.add("completed");
+      button.textContent = "Completed";
     }
 
-    document.body.appendChild(messageElement);
+    button.addEventListener("click", function() {
+      if (!button.classList.contains("loading") && !button.classList.contains("completed")) {
+        // Mark the button as loading
+        button.classList.add("loading");
+        button.textContent = "Verifying...";
 
+        // Save the loading state to localStorage
+        localStorage.setItem(buttonKey, "loading");
+
+        // Open the link in a new tab (search the link)
+        window.open(taskId, "_blank");
+
+        // Simulate waiting for 15 seconds (15000ms)
+        setTimeout(() => {
+          button.classList.remove("loading");
+          button.classList.add("completed");
+          button.textContent = "Completed";
+          points += 500; // Add points after task completion
+          pointsDisplay.textContent = `$DGPW: ${points}`;
+
+          // Save the updated points and completed state to localStorage
+          localStorage.setItem("points", points);
+          localStorage.setItem(buttonKey, "completed");
+        }, 15000); // 15 seconds delay to simulate task completion
+      }
+    });
+  });
+
+  const copyLinkButton = document.getElementById("copy-link-button");
+  const copyLinkInput = document.getElementById("copy-link");
+
+  // Copy button functionality
+  copyLinkButton.addEventListener("click", () => {
+    copyLinkInput.select();
+    document.execCommand("copy"); // Copy the link to clipboard
+
+    // Show custom message
+    const customMessage = document.createElement("div");
+    customMessage.textContent = "Link successfully copied!";
+    customMessage.style.position = "fixed";
+    customMessage.style.top = "10px";
+    customMessage.style.left = "50%";
+    customMessage.style.transform = "translateX(-50%)";
+    customMessage.style.padding = "10px 20px";
+    customMessage.style.background = "rgba(255, 0, 0, 0.8)";
+    customMessage.style.color = "white";
+    customMessage.style.border = "2px solid red";
+    customMessage.style.borderRadius = "5px";
+    customMessage.style.zIndex = "1000";
+    customMessage.style.textAlign = "center";
+    customMessage.style.fontWeight = "bold";
+
+    document.body.appendChild(customMessage);
+
+    // Remove the message after 3 seconds
     setTimeout(() => {
-        document.body.removeChild(messageElement);
-    }, 10000); // Message will disappear after 10 seconds
-}
-
-// Handle task completion
-function startTask(taskId, url) {
-    const taskButton = document.querySelector(`button[onclick*="startTask('${taskId}',"]`);
-    const taskLink = document.querySelector(`a[href="${url}"]`);
-
-    // Check if URL has changed
-    if (taskRewards[taskId] && taskLink && taskLink.href !== url) {
-        delete taskRewards[taskId];
-        localStorage.setItem('taskRewards', JSON.stringify(taskRewards));
-        if (taskButton) {
-            taskButton.textContent = "Start Task";
-            taskButton.disabled = false;
-        }
-    }
-
-    // If task already completed, show a message and remove the link
-    if (taskRewards[taskId]) {
-        displayMessage("You have already completed this task and received the reward.");
-        return;
-    }
-
-    window.open(url, '_blank');
-
-    // After 10 seconds, display "Verifying tasks... please complete it fairly"
-    setTimeout(() => {
-        displayMessage("Verifying tasks... please complete it fairly");
-    }, 10000);
-
-    setTimeout(() => {
-        displayMessage("You have received 10 hours for completing the task!");
-        balance += 10;
-        taskRewards[taskId] = true;
-        localStorage.setItem('balance', balance);
-        localStorage.setItem('taskRewards', JSON.stringify(taskRewards));
-        updateBalance();
-
-        // Show completed message and move the task to the bottom
-        const taskList = document.getElementById('taskList');
-        if (taskList) {
-            const taskItem = taskButton.parentNode;
-            taskList.appendChild(taskItem); // Move completed task to bottom
-        }
-
-        if (taskLink) {
-            taskLink.remove();
-            const completionText = document.createElement('span');
-            completionText.textContent = "You have completed this task.";
-            taskLink.parentNode.appendChild(completionText);
-        }
-
-        if (taskButton) {
-            taskButton.disabled = true;
-            taskButton.textContent = "Completed";
-        }
-    }, 30000); // 30 seconds delay
-}
-
-// Initial setup on page load
-document.addEventListener('DOMContentLoaded', () => {
-    updateBalance();
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // Disable completed tasks and update text
-    const taskList = document.getElementById('taskList');
-    for (const taskId in taskRewards) {
-        if (taskRewards[taskId]) {
-            const button = document.querySelector(`button[onclick*="startTask('${taskId}',"]`);
-            const link = document.querySelector(`a[href*="startTask('${taskId}',"]`);
-            if (button) {
-                button.disabled = true;
-                button.textContent = "Completed";
-                if (taskList) {
-                    const taskItem = button.parentNode;
-                    taskList.appendChild(taskItem); // Ensure completed tasks are at the bottom
-                }
-            }
-            if (link) {
-                const completionText = document.createElement('span');
-                completionText.textContent = "You have completed this task.";
-                link.parentNode.appendChild(completionText);
-                link.remove();
-            }
-        }
-    }
+      document.body.removeChild(customMessage);
+    }, 3000);
+  });
 });

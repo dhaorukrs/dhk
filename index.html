@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mining App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div id="loading-screen">
+    <img src="1.png" id="loading-image" alt="Loading">
+  </div>
+
+  <!-- Main Content Section -->
+  <div id="main-content" style="display:none;">
+    <!-- Wallet Section -->
+    <div id="wallet-container">
+      <input type="text" id="wallet-input" placeholder="Enter your wallet address">
+      <button id="save-wallet">Save</button>
+      <p id="wallet-display" style="display:none;">
+        <img src="2.png" id="wallet-image" alt="Wallet Image" style="width: 20px; height: 20px; margin-right: 5px;">
+        <span id="wallet-address"></span>
+      </p>
+    </div>
+
+    <!-- Daily Check-In -->
+    <div id="daily-check-in" class="hidden">
+      <h2>Daily Check-In</h2>
+      <p>+1000</p>
+      <div id="confetti"></div>
+    </div>
+
+    <!-- Points Section -->
+    <div id="points-section">
+      <img src="1.png" alt="Profile" id="profile-image">
+      <p id="points-display">0</p>
+    </div>
+
+    <!-- Mandatory Tasks -->
+    <div id="tasks-container">
+      <div class="shining-effect"></div> <!-- Shining Effect Layer -->
+      <h3>Mandatory Tasks</h3>
+      <div class="task">
+        <span>Subscribe to our Youtube</span>
+        <button class="start-task" data-link="https://Youtube.com/imaginary-link">Start</button>
+      </div>
+      <div class="task">
+        <span>Follow us on X</span>
+        <button class="start-task" data-link="https://x.com/imaginary-link">Start</button>
+      </div>
+    </div>
+    
+    <!-- Copy Link Section -->
+    <div id="copy-link-container">
+      <input type="text" id="copy-link" value="https://t.me/dogshouse_bot/join?startapp=Yt8-Ne3DSXmIvpm6RHYcCg" readonly>
+      <button id="copy-link-button">Copy</button>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer id="footer">
+      <div class="footer-item">
+        <a href="index.html"><img src="i.png" alt="Home"></a>
+      </div>
+      <div class="footer-item">
+        <a href="friends.html"><img src="f.png" alt="Friends"></a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
