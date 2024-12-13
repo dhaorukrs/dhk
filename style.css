@@ -1,6 +1,6 @@
 /* General Body and Layout */
 body {
-  background-color: black;
+  background-color: #0f0f0f;
   font-family: Arial, sans-serif;
   color: white;
   margin: 0;
@@ -15,8 +15,9 @@ body {
 }
 
 #loading-image {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
+  border-radius: 40%;
 }
 
 /* Bouncing animation for loading screen */
@@ -67,6 +68,7 @@ body {
 #wallet-display img {
   width: 20px;
   height: 20px;
+  border-radius: 10%;
 }
 
 #daily-check-in {
@@ -169,7 +171,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  border-top: 0.2px solid #ffffff;
+  border-top: 0.1px solid #444;
+  border-raidus: 15px;
   background-color: rgb(0, 0, 0, 0.9);
   padding: 0px;
   text-align: center;
@@ -204,7 +207,7 @@ body {
   padding: 0px;
   font-size: 14px;
   border-radius: 15px;
-  border: 0.1px solid #ffffff;
+  border: 0.01px solid #444;
   flex-grow: 1;
   background-color: #3b3b3b;
 }
@@ -220,4 +223,4 @@ body {
 
 #copy-link-button:active {
   background-color: #45a049;
-}
+  }
