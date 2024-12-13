@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show custom message
     const customMessage = document.createElement("div");
-    customMessage.textContent = "Link successfully copied!";
+    customMessage.textContent = "Link copied!";
     customMessage.style.position = "fixed";
     customMessage.style.top = "10px";
     customMessage.style.left = "50%";
